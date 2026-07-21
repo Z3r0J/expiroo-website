@@ -1,11 +1,14 @@
+import type { IconName } from '@/components/Icon';
+
 /**
  * i18n base: locale list, typed UI dictionaries, and lookup helpers.
  *
  * Locale notes:
- * - DE uses informal "du" (tutea).
- * - ES uses LatAm vocabulary as primary (vencimiento/refrigerador) to stay
- *   consistent with the app bundle, with España synonyms (caducar/nevera)
- *   woven in once for SEO (plan correction M5).
+ * - DE uses informal "du" (tutea), matching the app's de bundle.
+ * - ES uses LatAm vocabulary as primary (vencimiento/refrigerador/alacena) to
+ *   stay consistent with the app bundle, with España synonyms (caducidad/nevera/
+ *   despensa) woven in once for SEO España (plan correction M5).
+ * Copy sourced from projects/expiroo/aso/{en-US,de-DE,es-419}.md.
  */
 
 export const locales = ['de', 'en', 'es'] as const;
@@ -30,113 +33,461 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
+export type FeatureCard = {
+  icon: IconName;
+  title: string;
+  body: string;
+  chip?: string;
+};
+
+export type FaqItem = { q: string; a: string };
+
+export type ChartBar = {
+  label: string;
+  value: number;
+  display: string;
+  highlight?: boolean;
+};
+
 export type Dictionary = {
-  meta: {
-    defaultTitle: string;
-    defaultDescription: string;
+  meta: { defaultTitle: string; defaultDescription: string };
+  nav: { skipToContent: string; blog: string; contact: string };
+  cta: { beta: string; betaNote: string };
+  hero: {
+    eyebrow: string;
+    titleLead: string;
+    titleHighlight: string;
+    lead: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
   };
-  nav: {
-    skipToContent: string;
+  features: {
+    eyebrow: string;
+    heading: string;
+    items: FeatureCard[];
+    notvorrat?: { title: string; body: string; cta: string; href: string };
   };
-  cta: {
-    beta: string;
-    betaNote: string;
+  carousel: { eyebrow: string; heading: string; slides: string[] };
+  waste: {
+    eyebrow: string;
+    heading: string;
+    lead: string;
+    caption: string;
+    ariaLabel: string;
+    bars: ChartBar[];
+    sourceLabel: string;
+    sourceUrl: string;
+  };
+  faq: { eyebrow: string; heading: string; items: FaqItem[] };
+  betaBanner: {
+    headingLead: string;
+    headingHighlight: string;
+    sub: string;
+    cta: string;
   };
   footer: {
     tagline: string;
+    betaNote: string;
+    productHeading: string;
+    blog: string;
+    contact: string;
+    alternatives?: string;
+    legalHeading: string;
     privacy: string;
     imprint: string;
-    contact: string;
     rights: string;
     language: string;
-  };
-  hero: {
-    title: string;
-    subtitle: string;
   };
 };
 
 const en: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Track food expiration dates, waste less',
+    defaultTitle: 'Expiroo — Food expiration date tracker for your fridge & pantry',
     defaultDescription:
-      'Expiroo reminds you before food expires. Barcode scan, an urgency traffic light, and fridge / freezer / pantry locations — no account, works offline. One-time purchase, no subscription.',
+      'Expiroo tracks expiration dates across your fridge, freezer and pantry and reminds you before food goes bad. Barcode scanning, an urgency traffic light, no account, works offline. One-time purchase, no subscription.',
   },
-  nav: {
-    skipToContent: 'Skip to content',
+  nav: { skipToContent: 'Skip to content', blog: 'Blog', contact: 'Contact' },
+  cta: { beta: 'Join the beta', betaNote: 'Closed beta on Google Play — limited spots.' },
+  hero: {
+    eyebrow: 'Food expiry tracker · Android',
+    titleLead: 'Never miss an ',
+    titleHighlight: 'expiration date',
+    lead: 'Half the food you throw away was still good yesterday. Expiroo remembers what’s in your fridge, freezer and pantry — and warns you before it goes bad.',
+    ctaPrimary: 'Join the beta',
+    ctaSecondary: 'See features',
   },
-  cta: {
-    beta: 'Join the beta',
-    betaNote: 'Closed beta on Google Play',
+  features: {
+    eyebrow: 'Features',
+    heading: 'Everything you need to stop throwing food away',
+    items: [
+      {
+        icon: 'reminders',
+        title: 'Reminders that actually arrive',
+        body: 'Get notified 7, 3 and 1 days before an item expires — and again on the day. Set your own schedule or switch to a single daily summary.',
+      },
+      {
+        icon: 'barcode',
+        title: 'Scan the barcode, skip the typing',
+        body: 'Point the camera at a barcode and Expiroo fills in the product name. Add the date and you’re done in seconds.',
+      },
+      {
+        icon: 'urgency',
+        title: 'Your whole kitchen at a glance',
+        body: 'A traffic-light home screen sorts everything by urgency: expired first, expiring soon next, fresh last.',
+      },
+      {
+        icon: 'locations',
+        title: 'Fridge, freezer, pantry — your layout',
+        body: 'Build your own locations and categories: fridge, freezer, pantry, cupboard, even the medicine cabinet. Anything with a printed date.',
+      },
+      {
+        icon: 'waste',
+        title: 'See what you’re wasting',
+        body: 'The waste report shows what you consumed against what you threw out, month by month. Most people are surprised the first time.',
+      },
+      {
+        icon: 'privacy',
+        title: 'Private by design',
+        body: 'Your inventory lives in a local database on your device. No login, no account, no server collecting what you eat.',
+        chip: 'No account · Offline',
+      },
+    ],
+  },
+  carousel: {
+    eyebrow: 'A look inside',
+    heading: 'See Expiroo in action',
+    slides: [
+      'Home screen sorting items by urgency',
+      'An expiry reminder notification',
+      'Settings — no account required',
+      'Fridge, freezer and pantry locations',
+      'Monthly food waste report',
+    ],
+  },
+  waste: {
+    eyebrow: 'The problem',
+    heading: 'Households throw away the most',
+    lead: 'Worldwide, households waste about 79 kg of food per person every year — part of 1.05 billion tonnes thrown away in 2022. Expiroo is built to shrink your share.',
+    caption: 'Share of global food waste, 2022',
+    ariaLabel:
+      'Bar chart: households account for 60% of global food waste, the rest of the supply chain 40%.',
+    bars: [
+      { label: 'Households', value: 60, display: '60%', highlight: true },
+      { label: 'Rest of the supply chain', value: 40, display: '40%' },
+    ],
+    sourceLabel: 'UNEP Food Waste Index Report 2024',
+    sourceUrl: 'https://www.unep.org/resources/publication/food-waste-index-report-2024',
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    heading: 'Questions, answered',
+    items: [
+      {
+        q: 'Is Expiroo free?',
+        a: 'Yes. The free version tracks up to 10 items at a time, so you can try the whole app before deciding.',
+      },
+      {
+        q: 'Do I need an account?',
+        a: 'No. There’s no account and no sign-up — everything stays in a local database on your phone.',
+      },
+      {
+        q: 'Does it work offline?',
+        a: 'Completely. Expiroo never needs a connection to add or check an item.',
+      },
+      {
+        q: 'What’s Expiroo Premium?',
+        a: 'A one-time purchase, not a subscription. It removes ads, unlocks unlimited items and opens the full statistics dashboard. Pay once, keep it forever.',
+      },
+      {
+        q: 'When will it be on the Play Store?',
+        a: 'Expiroo is in closed beta on Google Play right now. A public listing comes later — join the beta to get in early.',
+      },
+      {
+        q: 'Can I scan barcodes?',
+        a: 'Yes. Scan a product’s barcode and Expiroo fills in the name automatically; you just add the date.',
+      },
+    ],
+  },
+  betaBanner: {
+    headingLead: 'Join the closed beta and ',
+    headingHighlight: 'waste less',
+    sub: '12 beta spots · Google Play',
+    cta: 'Join the beta',
   },
   footer: {
-    tagline: 'Never miss an expiration date again.',
+    tagline: 'The food expiration tracker that keeps everything on your phone.',
+    betaNote: 'Currently in closed beta on Google Play.',
+    productHeading: 'Product',
+    blog: 'Blog',
+    contact: 'Contact',
+    alternatives: 'Alternatives',
+    legalHeading: 'Legal',
     privacy: 'Privacy',
     imprint: 'Imprint',
-    contact: 'Contact',
     rights: 'All rights reserved.',
     language: 'Language',
-  },
-  hero: {
-    title: 'Never miss an expiration date',
-    subtitle:
-      "Expiroo tracks what's in your fridge, freezer and pantry — and reminds you before it goes bad. No account. Works offline. One-time purchase, no subscription.",
   },
 };
 
 const es: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Controla las fechas de vencimiento, desperdicia menos',
+    defaultTitle: 'Expiroo — Control de fechas de vencimiento para tu refrigerador y alacena',
     defaultDescription:
-      'Expiroo te avisa antes de que se venza la comida. Escaneo de código de barras, semáforo de urgencia y ubicaciones refrigerador / congelador / despensa — sin cuenta y sin conexión. Pago único, sin suscripción.',
+      'Expiroo controla las fechas de vencimiento y caducidad de tu refrigerador, congelador y alacena, y te avisa antes de que se eche a perder la comida. Escaneo de código de barras, semáforo de urgencia, sin cuenta y sin conexión. Pago único, sin suscripción.',
   },
-  nav: {
-    skipToContent: 'Saltar al contenido',
+  nav: { skipToContent: 'Saltar al contenido', blog: 'Blog', contact: 'Contacto' },
+  cta: { beta: 'Únete a la beta', betaNote: 'Beta cerrada en Google Play — plazas limitadas.' },
+  hero: {
+    eyebrow: 'Control de vencimientos · Android',
+    titleLead: 'Controla las ',
+    titleHighlight: 'fechas de vencimiento',
+    lead: 'La mitad de la comida que botas todavía estaba buena ayer. Expiroo recuerda lo que tienes en el refrigerador, el congelador y la alacena, y te avisa antes de que se eche a perder.',
+    ctaPrimary: 'Únete a la beta',
+    ctaSecondary: 'Ver funciones',
   },
-  cta: {
-    beta: 'Únete a la beta',
-    betaNote: 'Beta cerrada en Google Play',
+  features: {
+    eyebrow: 'Funciones',
+    heading: 'Todo para dejar de tirar comida',
+    items: [
+      {
+        icon: 'reminders',
+        title: 'Recordatorios que sí llegan',
+        body: 'Recibe un aviso 7, 3 y 1 días antes de que un producto venza, y también el mismo día. Elige tus intervalos o cámbialos por un resumen diario.',
+      },
+      {
+        icon: 'barcode',
+        title: 'Escanea el código, olvídate de escribir',
+        body: 'Apunta la cámara al código de barras y Expiroo llena el nombre del producto. Agregas la fecha y listo, en segundos.',
+      },
+      {
+        icon: 'urgency',
+        title: 'Toda tu cocina de un vistazo',
+        body: 'La pantalla principal funciona como un semáforo y ordena todo por urgencia: primero lo vencido, luego lo que está por vencer y al final lo fresco.',
+      },
+      {
+        icon: 'locations',
+        title: 'Refrigerador, congelador y alacena, a tu manera',
+        body: 'Crea tus propias ubicaciones y categorías: refrigerador o nevera, congelador, alacena, despensa, hasta el botiquín. Cualquier cosa con una fecha impresa.',
+      },
+      {
+        icon: 'waste',
+        title: 'Mira cuánto estás botando',
+        body: 'El reporte de desperdicio te muestra lo que consumiste frente a lo que tiraste, mes a mes. A casi todos les sorprende la primera vez.',
+      },
+      {
+        icon: 'privacy',
+        title: 'Privada por diseño',
+        body: 'Tu inventario vive en una base de datos local, en tu dispositivo. Sin login, sin cuenta y sin ningún servidor recopilando lo que comes.',
+        chip: 'Sin cuenta · Offline',
+      },
+    ],
+  },
+  carousel: {
+    eyebrow: 'Un vistazo por dentro',
+    heading: 'Expiroo en acción',
+    slides: [
+      'Pantalla principal ordenando por urgencia',
+      'Una notificación de recordatorio de vencimiento',
+      'Ajustes — sin necesidad de cuenta',
+      'Ubicaciones: refrigerador, congelador y alacena',
+      'Reporte mensual de desperdicio',
+    ],
+  },
+  waste: {
+    eyebrow: 'El problema',
+    heading: 'Los hogares son los que más tiran',
+    lead: 'En España se desperdician 1.125 millones de kg de comida al año — unos 24,38 kg por persona. Expiroo está hecho para reducir tu parte.',
+    caption: 'Reparto del desperdicio de alimentos',
+    ariaLabel:
+      'Gráfico de barras: los hogares concentran el 97,5 % del desperdicio de alimentos y el resto de la cadena el 2,5 %.',
+    bars: [
+      { label: 'Hogares', value: 97.5, display: '97,5 %', highlight: true },
+      { label: 'Resto de la cadena', value: 2.5, display: '2,5 %' },
+    ],
+    sourceLabel: 'MAPA, Desperdicio Alimentario 2024',
+    sourceUrl: 'https://www.mapa.gob.es',
+  },
+  faq: {
+    eyebrow: 'Preguntas',
+    heading: 'Preguntas frecuentes',
+    items: [
+      {
+        q: '¿Expiroo es gratis?',
+        a: 'Sí. La versión gratuita controla hasta 10 productos a la vez, así que puedes probar toda la app antes de decidir.',
+      },
+      {
+        q: '¿Necesito una cuenta?',
+        a: 'No. No hay cuenta ni registro: todo se queda en una base de datos local en tu teléfono.',
+      },
+      {
+        q: '¿Funciona sin conexión?',
+        a: 'Por completo. Expiroo nunca necesita internet para agregar o consultar un producto.',
+      },
+      {
+        q: '¿Qué es Expiroo Premium?',
+        a: 'Un pago único, no una suscripción. Quita los anuncios, desbloquea productos ilimitados y abre el panel completo de estadísticas. Pagas una vez y es tuyo.',
+      },
+      {
+        q: '¿Cuándo estará en la Play Store?',
+        a: 'Expiroo está en beta cerrada en Google Play ahora mismo. La ficha pública llega después; únete a la beta para entrar antes.',
+      },
+      {
+        q: '¿Puedo escanear códigos de barras?',
+        a: 'Sí. Escanea el código de barras de un producto y Expiroo llena el nombre automáticamente; tú solo agregas la fecha.',
+      },
+    ],
+  },
+  betaBanner: {
+    headingLead: 'Únete a la beta cerrada y ',
+    headingHighlight: 'desperdicia menos',
+    sub: '12 plazas de beta · Google Play',
+    cta: 'Únete a la beta',
   },
   footer: {
-    tagline: 'No vuelvas a olvidar una fecha de vencimiento.',
+    tagline: 'El control de fechas de vencimiento que guarda todo en tu teléfono.',
+    betaNote: 'Actualmente en beta cerrada en Google Play.',
+    productHeading: 'Producto',
+    blog: 'Blog',
+    contact: 'Contacto',
+    legalHeading: 'Legal',
     privacy: 'Privacidad',
     imprint: 'Aviso legal',
-    contact: 'Contacto',
     rights: 'Todos los derechos reservados.',
     language: 'Idioma',
-  },
-  hero: {
-    title: 'Controla las fechas de vencimiento',
-    subtitle:
-      'Expiroo organiza lo que hay en tu refrigerador, congelador y despensa, y te avisa antes de que caduque. Sin cuenta. Funciona sin conexión. Pago único, sin suscripción.',
   },
 };
 
 const de: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Haltbarkeitsdatum & MHD im Blick, weniger wegwerfen',
+    defaultTitle: 'Expiroo — Haltbarkeitsdatum & MHD im Blick für Kühlschrank und Vorrat',
     defaultDescription:
-      'Expiroo erinnert dich, bevor Lebensmittel ablaufen. Barcode-Scan, Dringlichkeits-Ampel und Orte für Kühlschrank / Gefrierfach / Vorrat — ohne Konto, offline. Einmaliger Kauf, kein Abo.',
+      'Expiroo behält das Haltbarkeitsdatum von Kühlschrank, Gefrierschrank und Vorratskammer im Blick und meldet sich, bevor etwas schlecht wird. Barcode-Scan, Dringlichkeits-Ampel, ohne Konto, offline. Einmaliger Kauf, kein Abo.',
   },
-  nav: {
-    skipToContent: 'Zum Inhalt springen',
+  nav: { skipToContent: 'Zum Inhalt springen', blog: 'Blog', contact: 'Kontakt' },
+  cta: { beta: 'Zur Beta anmelden', betaNote: 'Geschlossene Beta bei Google Play — begrenzte Plätze.' },
+  hero: {
+    eyebrow: 'Haltbarkeits-Tracker · Android',
+    titleLead: 'Haltbarkeitsdatum ',
+    titleHighlight: 'im Blick',
+    lead: 'Die Hälfte der Lebensmittel, die du wegwirfst, war gestern noch gut. Expiroo behält im Blick, was in Kühlschrank, Gefrierschrank und Vorratskammer liegt — und meldet sich, bevor etwas schlecht wird.',
+    ctaPrimary: 'Zur Beta anmelden',
+    ctaSecondary: 'Funktionen ansehen',
   },
-  cta: {
-    beta: 'Zur Beta anmelden',
-    betaNote: 'Geschlossene Beta bei Google Play',
+  features: {
+    eyebrow: 'Funktionen',
+    heading: 'Alles, um nichts mehr wegzuwerfen',
+    items: [
+      {
+        icon: 'reminders',
+        title: 'Erinnerungen, die ankommen',
+        body: 'Du wirst 7, 3 und 1 Tag vor Ablauf benachrichtigt — und noch einmal am Tag selbst. Die Intervalle stellst du selbst ein oder wechselst zu einer Tageszusammenfassung.',
+      },
+      {
+        icon: 'barcode',
+        title: 'Barcode scannen statt tippen',
+        body: 'Kamera auf den Barcode halten, und Expiroo trägt den Produktnamen ein. MHD ergänzen, fertig, in Sekunden.',
+      },
+      {
+        icon: 'urgency',
+        title: 'Alles auf einen Blick',
+        body: 'Der Startbildschirm sortiert nach Dringlichkeit wie eine Ampel: abgelaufen zuerst, dann was bald abläuft, zuletzt das Frische.',
+      },
+      {
+        icon: 'locations',
+        title: 'Kühlschrank, Gefrierschrank, Vorrat — dein Aufbau',
+        body: 'Lagerorte und Kategorien legst du selbst an: Kühlschrank, Gefrierschrank, Vorratskammer, Keller, Medikamentenschrank. Alles mit aufgedrucktem Datum.',
+      },
+      {
+        icon: 'waste',
+        title: 'Sieh, was weggeworfen wird',
+        body: 'Der Verschwendungs-Bericht stellt Monat für Monat gegenüber, was du verbraucht und was du entsorgt hast. Beim ersten Mal sind die meisten überrascht.',
+      },
+      {
+        icon: 'privacy',
+        title: 'Datenschutz von Anfang an',
+        body: 'Dein Bestand liegt in einer lokalen Datenbank auf deinem Gerät. Kein Login, kein Konto, kein Server, der mitschreibt, was du isst.',
+        chip: 'Ohne Konto · Offline',
+      },
+    ],
+    notvorrat: {
+      title: 'Auch für den Notvorrat',
+      body: 'Wer einen Notvorrat im Rotationsverfahren führt, braucht genau das: eine Liste, die nach MHD sortiert und rechtzeitig meldet, was als Nächstes verbraucht werden sollte.',
+      cta: 'Notvorrat richtig anlegen',
+      href: '/de/blog/notvorrat-anlegen-rotieren',
+    },
+  },
+  carousel: {
+    eyebrow: 'Ein Blick hinein',
+    heading: 'Expiroo in Aktion',
+    slides: [
+      'Startbildschirm nach Dringlichkeit sortiert',
+      'Eine Erinnerung vor dem Ablaufdatum',
+      'Einstellungen — ohne Konto',
+      'Orte: Kühlschrank, Gefrierschrank und Vorrat',
+      'Monatlicher Verschwendungs-Bericht',
+    ],
+  },
+  waste: {
+    eyebrow: 'Das Problem',
+    heading: 'Haushalte werfen am meisten weg',
+    lead: 'In Deutschland fallen 10,8 Mio. Tonnen Lebensmittelabfälle pro Jahr an — rund 74,5 kg pro Kopf. Expiroo hilft dir, deinen Anteil zu senken.',
+    caption: 'Anteil an der Lebensmittelverschwendung',
+    ariaLabel:
+      'Balkendiagramm: Haushalte verursachen 58 % der Lebensmittelabfälle, der Rest der Kette 42 %.',
+    bars: [
+      { label: 'Haushalte', value: 58, display: '58 %', highlight: true },
+      { label: 'Rest der Kette', value: 42, display: '42 %' },
+    ],
+    sourceLabel: 'BMLEH / UBA, 2022',
+    sourceUrl: 'https://www.bmleh.de',
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    heading: 'Häufige Fragen',
+    items: [
+      {
+        q: 'Ist Expiroo kostenlos?',
+        a: 'Ja. Die kostenlose Version verwaltet bis zu 10 Artikel gleichzeitig, genug, um die ganze App zu testen.',
+      },
+      {
+        q: 'Brauche ich ein Konto?',
+        a: 'Nein. Es gibt kein Konto und keine Anmeldung — alles bleibt in einer lokalen Datenbank auf deinem Gerät.',
+      },
+      {
+        q: 'Funktioniert es offline?',
+        a: 'Vollständig. Expiroo braucht zum Eintragen oder Nachsehen nie eine Verbindung.',
+      },
+      {
+        q: 'Was ist Expiroo Premium?',
+        a: 'Ein einmaliger Kauf, kein Abo. Es entfernt die Werbung, hebt das Limit auf und schaltet die vollständige Statistik frei. Einmal zahlen, dauerhaft behalten.',
+      },
+      {
+        q: 'Wann kommt es in den Play Store?',
+        a: 'Expiroo ist gerade in der geschlossenen Beta bei Google Play. Die öffentliche Version folgt später — melde dich für die Beta an, um früh dabei zu sein.',
+      },
+      {
+        q: 'Kann ich Barcodes scannen?',
+        a: 'Ja. Scanne den Barcode eines Produkts, und Expiroo trägt den Namen automatisch ein; du ergänzt nur das Datum.',
+      },
+    ],
+  },
+  betaBanner: {
+    headingLead: 'Mach bei der geschlossenen Beta mit und ',
+    headingHighlight: 'wirf weniger weg',
+    sub: '12 Beta-Plätze · Google Play',
+    cta: 'Zur Beta anmelden',
   },
   footer: {
-    tagline: 'Verpasse nie wieder ein Haltbarkeitsdatum.',
+    tagline: 'Der Haltbarkeits-Tracker, der alles auf deinem Gerät behält.',
+    betaNote: 'Derzeit in geschlossener Beta bei Google Play.',
+    productHeading: 'Produkt',
+    blog: 'Blog',
+    contact: 'Kontakt',
+    legalHeading: 'Rechtliches',
     privacy: 'Datenschutz',
     imprint: 'Impressum',
-    contact: 'Kontakt',
     rights: 'Alle Rechte vorbehalten.',
     language: 'Sprache',
-  },
-  hero: {
-    title: 'Haltbarkeitsdatum im Blick',
-    subtitle:
-      'Expiroo behält im Blick, was in Kühlschrank, Gefrierfach und Vorrat liegt – und erinnert dich, bevor es abläuft. Ohne Konto. Offline. Einmaliger Kauf, kein Abo.',
   },
 };
 

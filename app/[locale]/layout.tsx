@@ -9,14 +9,14 @@ import { getDictionary, isLocale, locales } from '@/lib/i18n';
 
 const jakarta = Plus_Jakarta_Sans({
   variable: '--font-jakarta',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   display: 'swap',
   weight: ['500', '600', '700', '800'],
 });
 
 const workSans = Work_Sans({
   variable: '--font-work-sans',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   display: 'swap',
   weight: ['400', '500', '600'],
 });
@@ -64,7 +64,7 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col bg-surface text-on-surface antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
         >
           {dict.nav.skipToContent}
         </a>

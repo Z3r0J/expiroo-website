@@ -1,58 +1,140 @@
 @import "tailwindcss";
 
 /*
- * Expiroo brand tokens — mirrors the app's constants/theme.ts (the SSOT).
- * Tailwind v4 CSS-first config: each color variable generates bg, text and
- * border utilities; each font variable generates a font utility.
+ * Expiroo brand tokens — Tailwind v4 CSS-first config (shuri spec §2).
+ * Mirrors the app's constants/theme.ts. Each color variable generates bg, text
+ * and border utilities; each font variable generates a font utility.
  */
 @theme {
-  /* Primary */
-  --color-primary: #176a21;
-  --color-primary-container: #9df196;
-  --color-primary-dim: #025d16;
-  --color-on-primary: #d1ffc8;
+  /* Typography — fed by next/font/google CSS variables (see [locale]/layout.tsx) */
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Surfaces */
+  /* Light surfaces (fine paper) */
   --color-surface: #f6f6f6;
-  --color-surface-container-lowest: #ffffff;
   --color-surface-container-low: #f0f1f0;
+  --color-surface-container-lowest: #ffffff;
   --color-on-surface: #2d2f2f;
   --color-on-surface-variant: #5a5c5c;
+  --color-outline-variant: #c4c8c2;
 
-  /* Freshness / status */
-  --color-expired: #d32f2f;
-  --color-warning: #f57c00;
-  --color-fresh: #388e3c;
-  --color-error: #b02500;
-
-  /* Tertiary */
+  /* Brand */
+  --color-primary: #176a21;
+  --color-primary-dim: #025d16;
+  --color-primary-container: #9df196;
+  --color-on-primary: #d1ffc8;
+  --color-on-primary-container: #005c14;
   --color-tertiary: #00656f;
   --color-tertiary-container: #c2edef;
 
-  /* Typography — fed by next/font/google CSS variables (see [locale]/layout.tsx) */
-  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Dark brand band (mesh base) */
+  --color-night: #08240f;
+  --color-night-card: #12301a;
+
+  /* Freshness / status — base trio + tonal pairs */
+  --color-fresh: #388e3c;
+  --color-fresh-container: #c6e9be;
+  --color-on-fresh-container: #1d4520;
+  --color-warning: #f57c00;
+  --color-warning-container: #ffe0b8;
+  --color-on-warning-container: #5c3a05;
+  --color-expired: #d32f2f;
+  --color-expired-container: #ffdad6;
+  --color-on-expired-container: #5f1412;
+  --color-error: #b02500;
+
+  /* Radii — rounded-4xl is not a v4 default */
+  --radius-4xl: 2rem;
+
+  /* Shadow ban with two sanctioned exceptions */
+  --shadow-ambient: 0 8px 32px rgb(45 47 47 / 0.06);
+  --shadow-phone: 0 24px 64px rgb(4 23 10 / 0.35);
 }
 
 /*
- * "Expiroo Mesh" hero background (from design.json). Reusable utility.
- * No-Line Rule: sections separate via background shifts, never 1px borders.
+ * "Expiroo Mesh" brand bands (CSS literal from design.json — do not rewrite).
+ * bg-mesh: vertical hero; bg-mesh-wide: compact internal bands + BetaCTA.
  */
-@utility expiroo-mesh {
-  background-color: #08240f;
-  background-image:
-    radial-gradient(at 14% 30%, #2b9134 0px, transparent 52%),
+@utility bg-mesh {
+  background: radial-gradient(at 14% 30%, #2b9134 0px, transparent 52%),
     radial-gradient(at 86% 22%, #1e7628 0px, transparent 50%),
     radial-gradient(at 50% 2%, #17631f 0px, transparent 58%),
     radial-gradient(at 6% 64%, #114f1a 0px, transparent 54%),
     radial-gradient(at 94% 74%, #0c3d13 0px, transparent 58%),
-    radial-gradient(at 50% 104%, #04170a 0px, transparent 64%);
+    radial-gradient(at 50% 104%, #04170a 0px, transparent 64%), #08240f;
 }
 
-body {
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
+@utility bg-mesh-wide {
+  background: radial-gradient(at 10% 42%, #2b9134 0px, transparent 55%),
+    radial-gradient(at 62% 8%, #1e7628 0px, transparent 52%),
+    radial-gradient(at 34% 96%, #114f1a 0px, transparent 56%),
+    radial-gradient(at 96% 62%, #0c3d13 0px, transparent 58%),
+    radial-gradient(at 100% 100%, #04170a 0px, transparent 62%), #08240f;
+}
+
+/* Responsive type scale (shuri §3) */
+@layer components {
+  .text-display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 1.3rem + 4.5vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .text-headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.875rem, 1.25rem + 2.2vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .text-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .text-lead {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+    line-height: 1.5;
+  }
+  .text-body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .text-body-lg {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  .text-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
 }
