@@ -1,5 +1,9 @@
 import type { Locale } from './i18n';
 
+// RELEASE CHECKLIST: when adding a locale-specific route or translating a post,
+// register it here (RESTRICTED_ROUTES / POST_LOCALES) so the LocaleSwitcher
+// resolves it — otherwise a locale swap will 404 or fall back unnecessarily.
+
 /**
  * Client-safe route availability, consumed by the LocaleSwitcher (a client
  * component that can't read the filesystem) so a locale swap never links to a
