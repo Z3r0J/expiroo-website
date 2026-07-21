@@ -22,7 +22,7 @@ export async function generateMetadata({
     locale,
     path: '/blog',
     title: `${dict.blog.heading} · Expiroo`,
-    description: dict.meta.defaultDescription,
+    description: dict.blog.description,
     availableLocales: [...locales],
   });
 }

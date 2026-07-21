@@ -88,6 +88,7 @@ export type Dictionary = {
   blog: {
     eyebrow: string;
     heading: string;
+    description: string;
     empty: string;
     minRead: string;
   };
@@ -239,6 +240,8 @@ const en: Dictionary = {
   blog: {
     eyebrow: 'Blog',
     heading: 'Notes on food, dates and waste',
+    description:
+      'Practical guides on food storage, expiration dates and cutting food waste — from the team behind Expiroo.',
     empty: 'No articles yet — check back soon.',
     minRead: 'min read',
   },
@@ -277,7 +280,7 @@ const es: Dictionary = {
   meta: {
     defaultTitle: 'Expiroo — Control de fechas de vencimiento para tu refrigerador y alacena',
     defaultDescription:
-      'Expiroo controla las fechas de vencimiento y caducidad de tu refrigerador, congelador y alacena, y te avisa antes de que se eche a perder la comida. Escaneo de código de barras, semáforo de urgencia, sin cuenta y sin conexión. Pago único, sin suscripción.',
+      'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad que te avisa antes de que se eche a perder la comida. Escaneo de código de barras, semáforo de urgencia, sin cuenta y sin conexión. Pago único, sin suscripción.',
   },
   nav: { skipToContent: 'Saltar al contenido', blog: 'Blog', contact: 'Contacto' },
   cta: { beta: 'Únete a la beta', betaNote: 'Beta cerrada en Google Play — plazas limitadas.' },
@@ -390,6 +393,8 @@ const es: Dictionary = {
   blog: {
     eyebrow: 'Blog',
     heading: 'Notas sobre comida, fechas y desperdicio',
+    description:
+      'Guías prácticas sobre conservación de alimentos, fechas de vencimiento y cómo desperdiciar menos — del equipo de Expiroo.',
     empty: 'Todavía no hay artículos — vuelve pronto.',
     minRead: 'min de lectura',
   },
@@ -425,9 +430,9 @@ const es: Dictionary = {
 
 const de: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Haltbarkeitsdatum & MHD im Blick für Kühlschrank und Vorrat',
+    defaultTitle: 'Expiroo — Kühlschrank- & Vorrats-App mit Ablauf-Erinnerung',
     defaultDescription:
-      'Expiroo behält das Haltbarkeitsdatum von Kühlschrank, Gefrierschrank und Vorratskammer im Blick und meldet sich, bevor etwas schlecht wird. Barcode-Scan, Dringlichkeits-Ampel, ohne Konto, offline. Einmaliger Kauf, kein Abo.',
+      'Die Vorrats- & Kühlschrank-App, die dein Haltbarkeitsdatum (MHD) im Blick behält und meldet, bevor etwas schlecht wird. Barcode-Scan, Ampel, ohne Konto, offline. Einmaliger Kauf, kein Abo.',
   },
   nav: { skipToContent: 'Zum Inhalt springen', blog: 'Blog', contact: 'Kontakt' },
   cta: { beta: 'Zur Beta anmelden', betaNote: 'Geschlossene Beta bei Google Play — begrenzte Plätze.' },
@@ -546,6 +551,8 @@ const de: Dictionary = {
   blog: {
     eyebrow: 'Blog',
     heading: 'Notizen zu Lebensmitteln, Daten und Verschwendung',
+    description:
+      'Praktische Ratgeber zu Lebensmitteln, Haltbarkeit und weniger Verschwendung — vom Team hinter Expiroo.',
     empty: 'Noch keine Artikel — schau bald wieder vorbei.',
     minRead: 'Min. Lesezeit',
   },
