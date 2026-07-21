@@ -326,11 +326,39 @@ def fit_title(draw, text, path, max_w, max_h, start, floor, tr=-0.03,
     return font, wrap_tr(draw, text, font, max_w, tr)
 
 
+def _wrap_clamp(draw, text, font, col_w, max_lines):
+    """Wrap to at most max_lines. The last allowed line reserves room for "…"
+    so, when the text overflows, it stops at a WORD boundary (never mid-word).
+    Returns (lines, truncated)."""
+    full = wrap_tr(draw, text, font, col_w)
+    if len(full) <= max_lines:
+        return full, False
+    ell_w = t_width(draw, " …", font)
+    words = text.split()
+    lines, cur = [], ""
+    for w in words:
+        last_line = len(lines) == max_lines - 1
+        limit = col_w - ell_w if last_line else col_w
+        probe = f"{cur} {w}".strip()
+        if t_width(draw, probe, font) <= limit:
+            cur = probe
+        elif not cur:  # single word wider than the line — force it
+            cur = w
+        else:
+            lines.append(cur)
+            if len(lines) == max_lines:
+                return lines, True  # words remain -> truncated
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines, False
+
+
 def draw_subtitle(draw, text, font_path, x, y, col_w, max_bottom, s,
                   color=(158, 166, 186), max_lines=2):
     """Draw the subtitle below the title: up to max_lines, stepping the font
-    down before truncating with an ellipsis, and never crossing max_bottom
-    (the untouchable footer band)."""
+    down before truncating at a word boundary with an ellipsis, and never
+    crossing max_bottom (the untouchable footer band)."""
     for size in (int(27 * s), int(24 * s), int(22 * s)):
         font = load_font(font_path, size)
         line_h = int(size * 1.4)
@@ -338,13 +366,9 @@ def draw_subtitle(draw, text, font_path, x, y, col_w, max_bottom, s,
         allow = min(max_lines, room)
         if allow < 1:
             continue
-        lines = wrap_tr(draw, text, font, col_w)
-        if len(lines) > allow:
-            lines = lines[:allow]
-            last = lines[-1]
-            while last and t_width(draw, last + "…", font) > col_w:
-                last = last[:-1].rstrip()
-            lines[-1] = (last + "…") if last else "…"
+        lines, truncated = _wrap_clamp(draw, text, font, col_w, allow)
+        if truncated:
+            lines[-1] = lines[-1] + " …"
         yy = y
         for ln in lines:
             draw.text((x, yy), ln, font=font, fill=color)
