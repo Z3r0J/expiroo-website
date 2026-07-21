@@ -13,6 +13,9 @@ type BuildMetadataArgs = {
    * only for these — never toward URLs that would 404 (plan correction C2).
    */
   availableLocales: Locale[];
+  /** OG/Twitter image override (absolute path). Defaults to the locale feature graphic. */
+  image?: string;
+  ogType?: 'website' | 'article';
 };
 
 /**
@@ -25,6 +28,8 @@ export function buildMetadata({
   title,
   description,
   availableLocales,
+  image,
+  ogType = 'website',
 }: BuildMetadataArgs): Metadata {
   const canonical = `${SITE_URL}/${locale}${path}`;
 
@@ -37,7 +42,7 @@ export function buildMetadata({
     languages['x-default'] = `${SITE_URL}/${defaultLocale}${path}`;
   }
 
-  const ogImage = `/images/og/${locale}.png`;
+  const ogImage = image ?? `/images/og/${locale}.png`;
 
   return {
     title: { absolute: title },
@@ -47,13 +52,13 @@ export function buildMetadata({
       languages,
     },
     openGraph: {
-      type: 'website',
+      type: ogType,
       siteName: 'Expiroo',
       locale: ogLocales[locale],
       url: canonical,
       title,
       description,
-      images: [{ url: ogImage, width: 1024, height: 500, alt: title }],
+      images: [{ url: ogImage, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',

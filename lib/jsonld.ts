@@ -1,10 +1,37 @@
 import { SITE_URL } from './config';
 import type { Dictionary, Locale } from './i18n';
+import type { PostMeta } from './posts';
 
 /**
- * JSON-LD builders for the Home. No offers/price on MobileApplication — the app
- * is in closed beta and the price is not public (pricing rule).
+ * JSON-LD builders. No offers/price on MobileApplication — the app is in closed
+ * beta and the price is not public (pricing rule).
  */
+
+export function articleLd(locale: Locale, post: PostMeta) {
+  const url = `${SITE_URL}/${locale}/blog/${post.slug}`;
+  const image = post.image.startsWith('http')
+    ? post.image
+    : `${SITE_URL}${post.image}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    image,
+    inLanguage: locale,
+    mainEntityOfPage: url,
+    url,
+    author: { '@type': 'Organization', name: 'Expiroo', url: SITE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Expiroo',
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/expiroo-logo.png`,
+    },
+  };
+}
 
 export function mobileApplicationLd(locale: Locale, dict: Dictionary) {
   return {
