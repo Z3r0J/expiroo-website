@@ -127,7 +127,7 @@ const en: Dictionary = {
   meta: {
     defaultTitle: 'Expiroo — Food expiration date tracker for your fridge & pantry',
     defaultDescription:
-      'Expiroo tracks expiration dates across your fridge, freezer and pantry and reminds you before food goes bad. Barcode scanning, an urgency traffic light, no account, works offline. One-time purchase, no subscription.',
+      'Expiroo tracks food expiration dates across your fridge, freezer and pantry and reminds you before food goes bad. No account, works offline. One-time purchase.',
   },
   nav: { skipToContent: 'Skip to content', blog: 'Blog', contact: 'Contact' },
   cta: { beta: 'Join the beta', betaNote: 'Closed beta on Google Play — limited spots.' },
@@ -280,7 +280,7 @@ const es: Dictionary = {
   meta: {
     defaultTitle: 'Expiroo — Control de fechas de vencimiento para tu refrigerador y alacena',
     defaultDescription:
-      'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad que te avisa antes de que se eche a perder la comida. Escaneo de código de barras, semáforo de urgencia, sin cuenta y sin conexión. Pago único, sin suscripción.',
+      'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad que te avisa antes de que se eche a perder.',
   },
   nav: { skipToContent: 'Saltar al contenido', blog: 'Blog', contact: 'Contacto' },
   cta: { beta: 'Únete a la beta', betaNote: 'Beta cerrada en Google Play — plazas limitadas.' },
@@ -432,7 +432,7 @@ const de: Dictionary = {
   meta: {
     defaultTitle: 'Expiroo — Kühlschrank- & Vorrats-App mit Ablauf-Erinnerung',
     defaultDescription:
-      'Die Vorrats- & Kühlschrank-App, die dein Haltbarkeitsdatum (MHD) im Blick behält und meldet, bevor etwas schlecht wird. Barcode-Scan, Ampel, ohne Konto, offline. Einmaliger Kauf, kein Abo.',
+      'Die Vorrats- & Kühlschrank-App, die dein Haltbarkeitsdatum (MHD) im Blick behält und dich erinnert, bevor etwas abläuft. Ohne Konto, offline. Einmaliger Kauf.',
   },
   nav: { skipToContent: 'Zum Inhalt springen', blog: 'Blog', contact: 'Kontakt' },
   cta: { beta: 'Zur Beta anmelden', betaNote: 'Geschlossene Beta bei Google Play — begrenzte Plätze.' },

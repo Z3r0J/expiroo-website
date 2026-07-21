@@ -5,6 +5,8 @@ export type LegalSection = { heading: string; body: string[] };
 export type LegalDoc = {
   title: string;
   updated: string;
+  /** ≤160-char meta description; falls back to `intro` if absent. */
+  metaDescription?: string;
   intro: string;
   sections: LegalSection[];
 };
@@ -15,6 +17,8 @@ export const privacyDoc: Record<Locale, LegalDoc> = {
   en: {
     title: 'Privacy Policy',
     updated: 'Last updated: 21 July 2026',
+    metaDescription:
+      'Privacy at Expiroo: a static, cookieless site. Vercel hosting, cookieless Vercel Web Analytics, Web3Forms for the contact form, and your GDPR rights.',
     intro:
       'This website (expiroo.app) is a static marketing site for the Expiroo mobile app. It sets no cookies and builds no advertising profiles. This policy explains the limited data processed when you visit or contact us.',
     sections: [
@@ -60,6 +64,8 @@ export const privacyDoc: Record<Locale, LegalDoc> = {
   es: {
     title: 'Política de privacidad',
     updated: 'Última actualización: 21 de julio de 2026',
+    metaDescription:
+      'Política de privacidad de Expiroo: sitio estático sin cookies. Alojamiento en Vercel, analítica sin cookies, Web3Forms para el formulario y tus derechos RGPD.',
     intro:
       'Este sitio web (expiroo.app) es un sitio estático de presentación de la app Expiroo. No usa cookies ni crea perfiles publicitarios. Esta política explica los pocos datos que se tratan cuando lo visitas o nos escribes.',
     sections: [
@@ -105,6 +111,8 @@ export const privacyDoc: Record<Locale, LegalDoc> = {
   de: {
     title: 'Datenschutzerklärung',
     updated: 'Zuletzt aktualisiert: 21. Juli 2026',
+    metaDescription:
+      'Datenschutz bei Expiroo: statische Seite ohne Cookies. Hosting bei Vercel, cookiefreie Analyse, Web3Forms fürs Kontaktformular und deine DSGVO-Rechte.',
     intro:
       'Diese Website (expiroo.app) ist eine statische Info-Seite zur Expiroo-App. Sie setzt keine Cookies und erstellt keine Werbeprofile. Diese Erklärung beschreibt die wenigen Daten, die verarbeitet werden, wenn du sie besuchst oder uns schreibst.',
     sections: [

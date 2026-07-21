@@ -23,7 +23,7 @@ export async function generateMetadata({
     path: '/alternatives',
     title: 'NoWaste & Best Before Alternative — Expiroo (Android, no account)',
     description:
-      'Looking for a NoWaste or Best Before alternative? Expiroo is an Android-first food expiration tracker that needs no account, works offline by design, and is a one-time purchase — not a subscription.',
+      'Looking for a NoWaste or Best Before alternative? Expiroo is an Android-first expiry tracker with no account, offline by design, and a one-time purchase.',
     availableLocales: ['en'],
   });
 }

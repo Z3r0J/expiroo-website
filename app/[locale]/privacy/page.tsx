@@ -21,7 +21,7 @@ export async function generateMetadata({
     locale,
     path: '/privacy',
     title: `${doc.title} · Expiroo`,
-    description: doc.intro,
+    description: doc.metaDescription ?? doc.intro,
     availableLocales: [...locales],
   });
 }
