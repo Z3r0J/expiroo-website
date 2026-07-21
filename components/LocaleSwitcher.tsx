@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { localeNames, locales, type Locale } from '@/lib/i18n';
+import { POST_LOCALES, RESTRICTED_ROUTES } from '@/lib/routes';
 
-// Segmented pill switcher on dark bands (shuri §6). Each segment is an <a> to
-// the same path in the other locale.
+// Segmented pill switcher on dark bands (shuri §6). Each segment resolves to the
+// best EXISTING destination in the target locale so a swap never 404s (QA #1).
 export function LocaleSwitcher({
   currentLocale,
   label,
@@ -15,12 +16,29 @@ export function LocaleSwitcher({
 }) {
   const pathname = usePathname();
 
-  // Swap the first path segment (the locale) while keeping the rest of the path.
-  const hrefFor = (locale: Locale) => {
-    if (!pathname) return `/${locale}`;
-    const segments = pathname.split('/');
-    segments[1] = locale;
-    return segments.join('/') || `/${locale}`;
+  const hrefFor = (target: Locale): string => {
+    const segments = (pathname ?? `/${currentLocale}`).split('/');
+    const rest = segments.slice(2); // path after the locale segment
+
+    // Blog post: only offer the translation if it exists, else the blog index.
+    if (rest[0] === 'blog' && rest[1]) {
+      const slug = rest[1];
+      const available = POST_LOCALES[slug] ?? [currentLocale];
+      return available.includes(target)
+        ? `/${target}/blog/${slug}`
+        : `/${target}/blog`;
+    }
+
+    // Locale-restricted route (e.g. /en/alternatives): other locales go home.
+    const restricted = rest[0] ? RESTRICTED_ROUTES[rest[0]] : undefined;
+    if (restricted) {
+      return restricted.includes(target)
+        ? `/${target}/${rest.join('/')}`
+        : `/${target}`;
+    }
+
+    // Static pages (home, blog index, contact, privacy, imprint): plain swap.
+    return rest.length ? `/${target}/${rest.join('/')}` : `/${target}`;
   };
 
   return (
