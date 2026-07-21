@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BarChart, type ChartDatum } from '@/components/BarChart';
+import { BarChart, type ChartAccent, type ChartDatum } from '@/components/BarChart';
 
 /**
  * MDX component map, injected via the `components` prop of <MDXRemote> (M3:
@@ -38,21 +38,27 @@ function PostChart({
   source,
   sourceUrl,
   ariaLabel,
+  accent,
 }: {
-  data: ChartDatum[];
+  // MDX drops expression attributes (next-mdx-remote/serialize), so authors
+  // pass `data` as a JSON string; direct React callers may pass the array.
+  data: string | ChartDatum[];
   caption: string;
   source: string;
   sourceUrl: string;
   ariaLabel?: string;
+  accent?: ChartAccent;
 }) {
+  const bars: ChartDatum[] = typeof data === 'string' ? JSON.parse(data) : data;
   return (
     <div className="not-prose my-8">
       <BarChart
-        bars={data}
+        bars={bars}
         caption={caption}
         sourceLabel={source}
         sourceUrl={sourceUrl}
         ariaLabel={ariaLabel ?? caption}
+        accent={accent}
       />
     </div>
   );

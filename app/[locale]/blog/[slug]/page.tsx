@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { JsonLd } from '@/components/JsonLd';
 import { mdxComponents } from '@/components/mdx';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
@@ -83,7 +84,11 @@ export default async function PostPage({
       )}
 
       <article className="prose-botanical mx-auto max-w-[70ch] px-5 py-12 sm:px-8">
-        <MDXRemote source={post.content} components={mdxComponents} />
+        <MDXRemote
+          source={post.content}
+          components={mdxComponents}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
       </article>
     </>
   );

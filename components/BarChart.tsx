@@ -5,6 +5,15 @@ export type ChartDatum = {
   highlight?: boolean;
 };
 
+// Tailwind needs literal class names, so the accent tones are enumerated.
+// Waste data uses `expired` (shuri §9.2); everything else stays on brand.
+const FILLS = {
+  primary: { on: 'fill-primary', off: 'fill-primary-container' },
+  expired: { on: 'fill-expired', off: 'fill-expired-container' },
+} as const;
+
+export type ChartAccent = keyof typeof FILLS;
+
 // Shared inline SVG bar chart (shuri §8.4). Server-rendered, no client lib.
 // Bars scale to the largest value so a dominant share fills the plot; every
 // value is printed (color is never the only channel). A linked source is
@@ -23,17 +32,20 @@ export function BarChart({
   sourceLabel,
   sourceUrl,
   ariaLabel,
+  accent = 'primary',
 }: {
   bars: ChartDatum[];
   caption: string;
   sourceLabel: string;
   sourceUrl: string;
   ariaLabel: string;
+  accent?: ChartAccent;
 }) {
   const maxVal = Math.max(...bars.map((b) => b.value));
   const n = bars.length;
   const slot = (W - PAD_X * 2) / n;
   const barW = Math.min(110, slot * 0.5);
+  const fill = FILLS[accent];
 
   return (
     <figure className="rounded-3xl bg-surface-container-lowest p-6 md:p-8">
@@ -66,7 +78,7 @@ export function BarChart({
                 width={barW}
                 height={barH}
                 rx={6}
-                className={bar.highlight ? 'fill-primary' : 'fill-primary-container'}
+                className={bar.highlight ? fill.on : fill.off}
               />
               <text
                 x={cx}
