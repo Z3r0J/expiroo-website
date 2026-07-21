@@ -1,23 +1,8 @@
 import type { Dictionary } from '@/lib/i18n';
-
-// SVG geometry (viewBox units). Bars are scaled to the largest value so the
-// dominant share fills the plot; every value is printed (color never the only
-// channel).
-const W = 460;
-const H = 300;
-const PAD_X = 40;
-const BASELINE_Y = 232;
-const CHART_TOP = 60;
-const LABEL_Y = 262;
-const MAX_BAR_H = BASELINE_Y - CHART_TOP;
+import { BarChart } from './BarChart';
 
 export function WasteChart({ dict }: { dict: Dictionary }) {
   const w = dict.waste;
-  const maxVal = Math.max(...w.bars.map((b) => b.value));
-  const n = w.bars.length;
-  const slot = (W - PAD_X * 2) / n;
-  const barW = Math.min(110, slot * 0.5);
-
   return (
     <section className="bg-surface py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -27,70 +12,13 @@ export function WasteChart({ dict }: { dict: Dictionary }) {
           <p className="text-lead mt-4 text-on-surface-variant">{w.lead}</p>
         </div>
 
-        <figure className="rounded-3xl bg-surface-container-lowest p-6 md:p-8">
-          <svg
-            viewBox={`0 0 ${W} ${H}`}
-            role="img"
-            aria-label={w.ariaLabel}
-            className="w-full"
-          >
-            <title>{w.caption}</title>
-            <desc>{w.ariaLabel}</desc>
-            <line
-              x1={PAD_X}
-              y1={BASELINE_Y}
-              x2={W - PAD_X}
-              y2={BASELINE_Y}
-              className="stroke-outline-variant"
-              strokeWidth={1}
-            />
-            {w.bars.map((bar, i) => {
-              const barH = Math.max(4, (bar.value / maxVal) * MAX_BAR_H);
-              const x = PAD_X + slot * i + (slot - barW) / 2;
-              const y = BASELINE_Y - barH;
-              const cx = x + barW / 2;
-              return (
-                <g key={bar.label}>
-                  <rect
-                    x={x}
-                    y={y}
-                    width={barW}
-                    height={barH}
-                    rx={6}
-                    className={bar.highlight ? 'fill-primary' : 'fill-primary-container'}
-                  />
-                  <text
-                    x={cx}
-                    y={y - 12}
-                    textAnchor="middle"
-                    className="fill-on-surface text-[16px] font-bold tabular-nums"
-                  >
-                    {bar.display}
-                  </text>
-                  <text
-                    x={cx}
-                    y={LABEL_Y}
-                    textAnchor="middle"
-                    className="fill-on-surface-variant text-[13px]"
-                  >
-                    {bar.label}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
-          <figcaption className="mt-4 text-xs text-on-surface-variant">
-            {w.caption} ·{' '}
-            <a
-              href={w.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
-            >
-              {w.sourceLabel}
-            </a>
-          </figcaption>
-        </figure>
+        <BarChart
+          bars={w.bars}
+          caption={w.caption}
+          sourceLabel={w.sourceLabel}
+          sourceUrl={w.sourceUrl}
+          ariaLabel={w.ariaLabel}
+        />
       </div>
     </section>
   );

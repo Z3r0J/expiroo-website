@@ -85,6 +85,28 @@ export type Dictionary = {
     sub: string;
     cta: string;
   };
+  blog: {
+    eyebrow: string;
+    heading: string;
+    empty: string;
+    minRead: string;
+  };
+  contact: {
+    eyebrow: string;
+    heading: string;
+    lead: string;
+    name: string;
+    email: string;
+    message: string;
+    send: string;
+    sending: string;
+    successTitle: string;
+    successBody: string;
+    errorTitle: string;
+    errorBody: string;
+    fallback: string;
+    required: string;
+  };
   footer: {
     tagline: string;
     betaNote: string;
@@ -214,6 +236,28 @@ const en: Dictionary = {
     sub: '12 beta spots · Google Play',
     cta: 'Join the beta',
   },
+  blog: {
+    eyebrow: 'Blog',
+    heading: 'Notes on food, dates and waste',
+    empty: 'No articles yet — check back soon.',
+    minRead: 'min read',
+  },
+  contact: {
+    eyebrow: 'Contact',
+    heading: 'Get in touch',
+    lead: 'Questions, bug reports, beta access — send a message and we’ll get back to you.',
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    send: 'Send message',
+    sending: 'Sending…',
+    successTitle: 'Message sent',
+    successBody: 'Thanks — we’ll reply to your email soon.',
+    errorTitle: 'Something went wrong',
+    errorBody: 'Your message could not be sent. Please email us directly:',
+    fallback: 'Prefer email? Write to',
+    required: 'This field is required.',
+  },
   footer: {
     tagline: 'The food expiration tracker that keeps everything on your phone.',
     betaNote: 'Currently in closed beta on Google Play.',
@@ -297,12 +341,12 @@ const es: Dictionary = {
     eyebrow: 'El problema',
     heading: 'Los hogares son los que más tiran',
     lead: 'En España se desperdician 1.125 millones de kg de comida al año — unos 24,38 kg por persona. Expiroo está hecho para reducir tu parte.',
-    caption: 'Reparto del desperdicio de alimentos',
+    caption: 'Desperdicio en el ámbito del consumo (no incluye producción ni distribución)',
     ariaLabel:
-      'Gráfico de barras: los hogares concentran el 97,5 % del desperdicio de alimentos y el resto de la cadena el 2,5 %.',
+      'Gráfico de barras: dentro del desperdicio medido en el ámbito del consumo, los hogares concentran el 97,5 % y el consumo fuera del hogar el 2,5 %. No incluye producción ni distribución.',
     bars: [
       { label: 'Hogares', value: 97.5, display: '97,5 %', highlight: true },
-      { label: 'Resto de la cadena', value: 2.5, display: '2,5 %' },
+      { label: 'Fuera del hogar', value: 2.5, display: '2,5 %' },
     ],
     sourceLabel: 'MAPA, Desperdicio Alimentario 2024',
     sourceUrl: 'https://www.mapa.gob.es',
@@ -342,6 +386,28 @@ const es: Dictionary = {
     headingHighlight: 'desperdicia menos',
     sub: '12 plazas de beta · Google Play',
     cta: 'Únete a la beta',
+  },
+  blog: {
+    eyebrow: 'Blog',
+    heading: 'Notas sobre comida, fechas y desperdicio',
+    empty: 'Todavía no hay artículos — vuelve pronto.',
+    minRead: 'min de lectura',
+  },
+  contact: {
+    eyebrow: 'Contacto',
+    heading: 'Escríbenos',
+    lead: 'Dudas, reportes de errores, acceso a la beta — envía un mensaje y te responderemos.',
+    name: 'Nombre',
+    email: 'Correo',
+    message: 'Mensaje',
+    send: 'Enviar mensaje',
+    sending: 'Enviando…',
+    successTitle: 'Mensaje enviado',
+    successBody: 'Gracias — te responderemos a tu correo pronto.',
+    errorTitle: 'Algo salió mal',
+    errorBody: 'No se pudo enviar tu mensaje. Escríbenos directamente:',
+    fallback: '¿Prefieres el correo? Escribe a',
+    required: 'Este campo es obligatorio.',
   },
   footer: {
     tagline: 'El control de fechas de vencimiento que guarda todo en tu teléfono.',
@@ -476,6 +542,28 @@ const de: Dictionary = {
     headingHighlight: 'wirf weniger weg',
     sub: '12 Beta-Plätze · Google Play',
     cta: 'Zur Beta anmelden',
+  },
+  blog: {
+    eyebrow: 'Blog',
+    heading: 'Notizen zu Lebensmitteln, Daten und Verschwendung',
+    empty: 'Noch keine Artikel — schau bald wieder vorbei.',
+    minRead: 'Min. Lesezeit',
+  },
+  contact: {
+    eyebrow: 'Kontakt',
+    heading: 'Schreib uns',
+    lead: 'Fragen, Fehlerberichte, Beta-Zugang — schick eine Nachricht und wir melden uns.',
+    name: 'Name',
+    email: 'E-Mail',
+    message: 'Nachricht',
+    send: 'Nachricht senden',
+    sending: 'Wird gesendet…',
+    successTitle: 'Nachricht gesendet',
+    successBody: 'Danke — wir antworten dir bald per E-Mail.',
+    errorTitle: 'Etwas ist schiefgelaufen',
+    errorBody: 'Deine Nachricht konnte nicht gesendet werden. Schreib uns direkt:',
+    fallback: 'Lieber per E-Mail? Schreib an',
+    required: 'Dieses Feld ist erforderlich.',
   },
   footer: {
     tagline: 'Der Haltbarkeits-Tracker, der alles auf deinem Gerät behält.',
