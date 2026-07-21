@@ -21,9 +21,9 @@ export async function generateMetadata({
   return buildMetadata({
     locale: 'en',
     path: '/alternatives',
-    title: 'NoWaste & Best Before alternative for Android — Expiroo',
+    title: 'Expiroo vs. NoWaste & Best Before — Android tracker, no account',
     description:
-      'Looking for a NoWaste or Best Before alternative on Android? Expiroo is a local-first food expiration tracker: no account, works offline, one-time purchase.',
+      'How Expiroo compares with NoWaste and Best Before: an Android-first food expiration tracker that needs no account, works offline by design, and is a one-time purchase.',
     availableLocales: ['en'],
   });
 }
@@ -44,36 +44,38 @@ function Chip({ cell }: { cell: Cell }) {
   );
 }
 
+// Every cell is verified public info or marked "Check listing" where it cannot
+// be confirmed (never invented). Expiroo's defensible edge is the "good" tone.
 const ROWS: { criterion: string; expiroo: Cell; noWaste: Cell; bestBefore: Cell }[] = [
   {
-    criterion: 'Available on Android',
-    expiroo: { text: 'Yes', tone: 'good' },
-    noWaste: { text: 'iOS only', tone: 'neutral' },
-    bestBefore: { text: 'Yes', tone: 'good' },
+    criterion: 'Platforms',
+    expiroo: { text: 'Android', tone: 'good' },
+    noWaste: { text: 'iOS & Android', tone: 'neutral' },
+    bestBefore: { text: 'iOS & Android', tone: 'neutral' },
   },
   {
-    criterion: 'No account required',
-    expiroo: { text: 'Yes', tone: 'good' },
+    criterion: 'Account',
+    expiroo: { text: 'Never required', tone: 'good' },
     noWaste: { text: 'Check listing', tone: 'verify' },
-    bestBefore: { text: 'Check listing', tone: 'verify' },
+    bestBefore: { text: 'Optional, for sync', tone: 'neutral' },
   },
   {
-    criterion: 'Works fully offline',
-    expiroo: { text: 'Yes', tone: 'good' },
+    criterion: 'Works offline',
+    expiroo: { text: 'By design', tone: 'good' },
     noWaste: { text: 'Check listing', tone: 'verify' },
-    bestBefore: { text: 'Check listing', tone: 'verify' },
+    bestBefore: { text: 'Partial', tone: 'neutral' },
   },
   {
     criterion: 'Pricing',
     expiroo: { text: 'One-time purchase', tone: 'good' },
-    noWaste: { text: 'Check listing', tone: 'verify' },
-    bestBefore: { text: 'Check listing', tone: 'verify' },
+    noWaste: { text: 'Freemium + in-app purchases', tone: 'neutral' },
+    bestBefore: { text: 'One-time (iOS) / free (Android)', tone: 'neutral' },
   },
   {
     criterion: 'Barcode scanning',
     expiroo: { text: 'Yes', tone: 'good' },
-    noWaste: { text: 'Check listing', tone: 'verify' },
-    bestBefore: { text: 'Check listing', tone: 'verify' },
+    noWaste: { text: 'Yes', tone: 'neutral' },
+    bestBefore: { text: 'Yes', tone: 'neutral' },
   },
 ];
 
@@ -92,12 +94,12 @@ export default async function AlternativesPage({
         <div className="mx-auto max-w-[70ch] px-5 sm:px-8">
           <p className="text-label text-primary-container">Comparison</p>
           <h1 className="text-headline mt-3 text-white">
-            A NoWaste & Best Before alternative for Android
+            Expiroo vs. NoWaste and Best Before
           </h1>
           <p className="text-lead mt-4 max-w-xl text-white/80">
-            NoWaste is an iOS-only app, so Android users searching for it need
-            another option. Here is how Expiroo compares as an Android expiry
-            tracker.
+            NoWaste and Best Before are both capable, cross-platform expiry
+            trackers. Here is where Expiroo is different — and honest about where
+            it is not.
           </p>
         </div>
       </section>
@@ -106,10 +108,12 @@ export default async function AlternativesPage({
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <div className="prose-botanical">
             <p>
-              Expiroo is a local-first food expiration tracker for Android. It
-              keeps what is in your fridge, freezer and pantry on your device,
-              works without an account and without a connection, and is a
-              one-time purchase rather than a subscription.
+              Expiroo is a local-first food expiration tracker built Android-first.
+              Its defensible difference is simple: it never asks for an account,
+              works offline by design because your inventory lives in a local
+              database on your phone, and it is a one-time purchase rather than a
+              subscription. NoWaste and Best Before take different trade-offs, and
+              both are good apps — the table below sticks to what can be verified.
             </p>
           </div>
 
@@ -143,10 +147,12 @@ export default async function AlternativesPage({
           </div>
 
           <p className="mt-4 text-xs text-on-surface-variant">
-            Based on publicly available information. App features and pricing
-            change over time — always verify current details on each app’s
-            Google Play or App Store listing. “Check listing” means we do not
-            assert a value we cannot currently verify.
+            Based on publicly available information (App Store / Google Play
+            listings, developer sites). Best Before keeps its inventory offline
+            but its barcode lookup needs a connection, so it is “Partial”.
+            “Check listing” means a detail we cannot currently verify and do not
+            want to assert — always confirm current features and pricing on each
+            app’s store listing.
           </p>
 
           <div className="mt-10">
