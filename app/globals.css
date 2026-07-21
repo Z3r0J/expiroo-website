@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+ * Expiroo brand tokens — mirrors the app's constants/theme.ts (the SSOT).
+ * Tailwind v4 CSS-first config: each color variable generates bg, text and
+ * border utilities; each font variable generates a font utility.
+ */
+@theme {
+  /* Primary */
+  --color-primary: #176a21;
+  --color-primary-container: #9df196;
+  --color-primary-dim: #025d16;
+  --color-on-primary: #d1ffc8;
+
+  /* Surfaces */
+  --color-surface: #f6f6f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f1f0;
+  --color-on-surface: #2d2f2f;
+  --color-on-surface-variant: #5a5c5c;
+
+  /* Freshness / status */
+  --color-expired: #d32f2f;
+  --color-warning: #f57c00;
+  --color-fresh: #388e3c;
+  --color-error: #b02500;
+
+  /* Tertiary */
+  --color-tertiary: #00656f;
+  --color-tertiary-container: #c2edef;
+
+  /* Typography — fed by next/font/google CSS variables (see [locale]/layout.tsx) */
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * "Expiroo Mesh" hero background (from design.json). Reusable utility.
+ * No-Line Rule: sections separate via background shifts, never 1px borders.
+ */
+@utility expiroo-mesh {
+  background-color: #08240f;
+  background-image:
+    radial-gradient(at 14% 30%, #2b9134 0px, transparent 52%),
+    radial-gradient(at 86% 22%, #1e7628 0px, transparent 50%),
+    radial-gradient(at 50% 2%, #17631f 0px, transparent 58%),
+    radial-gradient(at 6% 64%, #114f1a 0px, transparent 54%),
+    radial-gradient(at 94% 74%, #0c3d13 0px, transparent 58%),
+    radial-gradient(at 50% 104%, #04170a 0px, transparent 64%);
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
