@@ -313,16 +313,43 @@ def wrap_tr(draw, text, font, max_w, tr=0.0):
     return lines
 
 
-def fit_title(draw, text, path, max_w, max_h, start, floor, tr=-0.03, leading=1.08):
+def fit_title(draw, text, path, max_w, max_h, start, floor, tr=-0.03,
+              leading=1.08, max_lines=4):
     size = start
     while size > floor:
         font = load_font(path, size)
         lines = wrap_tr(draw, text, font, max_w, tr)
-        if len(lines) * font.size * leading <= max_h and len(lines) <= 4:
+        if len(lines) * font.size * leading <= max_h and len(lines) <= max_lines:
             return font, lines
         size -= 2
     font = load_font(path, floor)
     return font, wrap_tr(draw, text, font, max_w, tr)
+
+
+def draw_subtitle(draw, text, font_path, x, y, col_w, max_bottom, s,
+                  color=(158, 166, 186), max_lines=2):
+    """Draw the subtitle below the title: up to max_lines, stepping the font
+    down before truncating with an ellipsis, and never crossing max_bottom
+    (the untouchable footer band)."""
+    for size in (int(27 * s), int(24 * s), int(22 * s)):
+        font = load_font(font_path, size)
+        line_h = int(size * 1.4)
+        room = int((max_bottom - y) // line_h)
+        allow = min(max_lines, room)
+        if allow < 1:
+            continue
+        lines = wrap_tr(draw, text, font, col_w)
+        if len(lines) > allow:
+            lines = lines[:allow]
+            last = lines[-1]
+            while last and t_width(draw, last + "…", font) > col_w:
+                last = last[:-1].rstrip()
+            lines[-1] = (last + "…") if last else "…"
+        yy = y
+        for ln in lines:
+            draw.text((x, yy), ln, font=font, fill=color)
+            yy += line_h
+        return
 
 
 def _norm(w):
@@ -367,23 +394,17 @@ def rounded_tile(content, tile_size, radius, fill, outline=None):
 
 def brand_lockup(img, draw, F, logo_path, x, y, text_color, s,
                  wordmark="Expiroo", dark_bg=True):
-    """Logo real + wordmark. En fondo oscuro, el logo (si trae partes oscuras)
-    va sobre tile claro estilo app-icon."""
-    logo_h = int(46 * s)
+    """Logo real + wordmark. El logo Expiroo es una marca verde clara (#9df196)
+    sobre fondo transparente, así que resalta directo sobre el mesh oscuro —
+    sin tile claro (que lo apagaba)."""
+    logo_h = int(48 * s)
     lx = x
     if logo_path and os.path.exists(logo_path):
         lg = Image.open(logo_path).convert("RGBA")
-        if dark_bg:
-            ts = logo_h + int(18 * s)
-            tile = rounded_tile(lg, ts, int(13 * s),
-                                (243, 245, 250, 255), (255, 255, 255, 60))
-            img.paste(tile, (lx, y - int(9 * s)), tile)
-            lx += ts + int(16 * s)
-        else:
-            r = logo_h / lg.height
-            lg = lg.resize((int(lg.width * r), logo_h), Image.LANCZOS)
-            img.paste(lg, (lx, y), lg)
-            lx += lg.width + int(16 * s)
+        r = logo_h / lg.height
+        lg = lg.resize((max(1, int(lg.width * r)), logo_h), Image.LANCZOS)
+        img.alpha_composite(lg, (lx, y))
+        lx += lg.width + int(16 * s)
     bf = load_font(F["semi"], int(26 * s))
     draw.text((lx, y + (logo_h - int(32 * s)) // 2), wordmark, font=bf, fill=text_color)
 
@@ -489,25 +510,36 @@ def tpl_dark(cfg):
     kcolor = tuple(min(c + 50, 255) for c in accent)
     tracked(d, (M, ky), cfg["kicker"].upper(), kf, kcolor, tr=0.16)
 
-    col_w = W - M * 2 - int((240 if (cfg["icon"] or cfg["motif"]) else 100) * s)
-    font, lines = fit_title(d, cfg["title"], F["display"], col_w,
-                            int(260 * s), int(76 * s), int(44 * s))
     ty = ky + int(52 * s)
-    title_block(d, (M - 3, ty), lines, font,
-                bright=(242, 243, 248), dim=(122, 130, 152), accent=kcolor,
-                lead_words=max(2, len(cfg["title"].split()) // 2),
-                highlights=cfg["highlight"])
+    col_w = W - M * 2 - int((240 if (cfg["icon"] or cfg["motif"]) else 100) * s)
 
-    # subtitle solo en tamaño site (en og es ilegible a tamaño feed)
-    if cfg["size"] == "site" and cfg["subtitle"]:
-        sf = load_font(F["semi"], int(27 * s))
-        yy = ty + len(lines) * int(font.size * 1.08) + int(18 * s)
-        for ln in wrap_tr(d, cfg["subtitle"], sf, col_w)[:2]:
-            d.text((M, yy), ln, font=sf, fill=(150, 158, 178))
-            yy += int(sf.size * 1.45)
+    # Untouchable footer band: title + subtitle must never cross it.
+    footer_line_y = H - int(92 * s)
+    footer_top = footer_line_y - int(22 * s)
 
-    d.line([(M, H - int(92 * s)), (W - M, H - int(92 * s))],
-           fill=(36, 42, 58), width=1)
+    has_sub = cfg["size"] == "site" and bool(cfg["subtitle"])
+    sub_line_h = int(int(27 * s) * 1.4)
+    sub_reserve = (2 * sub_line_h + int(28 * s)) if has_sub else 0
+
+    # German titles wrap hard: for long ones, start smaller and cap at 3 lines.
+    long_title = len(cfg["title"]) > 45
+    start = int((60 if long_title else 76) * s)
+    max_lines = 3 if long_title else 4
+    title_max_h = footer_top - ty - sub_reserve
+    font, lines = fit_title(d, cfg["title"], F["display"], col_w,
+                            title_max_h, start, int(40 * s), max_lines=max_lines)
+    title_bottom = title_block(d, (M - 3, ty), lines, font,
+                               bright=(242, 243, 248), dim=(122, 130, 152),
+                               accent=kcolor,
+                               lead_words=max(2, len(cfg["title"].split()) // 2),
+                               highlights=cfg["highlight"])
+
+    # Subtitle sits below the REAL title bottom, clamped above the footer band.
+    if has_sub:
+        draw_subtitle(d, cfg["subtitle"], F["semi"], M,
+                      title_bottom + int(24 * s), col_w, footer_top, s)
+
+    d.line([(M, footer_line_y), (W - M, footer_line_y)], fill=(36, 42, 58), width=1)
     mf = load_font(F["mono"], int(20 * s))
     tracked(d, (M, H - int(66 * s)), cfg["url"], mf, (128, 136, 158), tr=0.02)
     if cfg["meta"]:
@@ -517,8 +549,8 @@ def tpl_dark(cfg):
 
     img = vignette(img.convert("RGB"), 0.34)
     img = grain(img, 0.035, seed=slug_rng(cfg["slug"]).randint(0, 9999))
-    contrast_guard(img, (M, ty, M + col_w, ty + int(200 * s)), (242, 243, 248),
-                   strict=cfg["strict"])
+    contrast_guard(img, (M, ty, M + col_w, min(title_bottom, footer_top)),
+                   (242, 243, 248), strict=cfg["strict"])
     return img
 
 
