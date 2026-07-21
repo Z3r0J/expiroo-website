@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { DeviceFrame } from '@/components/DeviceFrame';
 import { BETA_URL } from '@/lib/config';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/seo';
@@ -54,6 +55,12 @@ export default async function HomePage({
           </a>
           <span className="text-sm text-white/70">{dict.cta.betaNote}</span>
         </div>
+        <DeviceFrame
+          src={`/images/app/${locale}/01-home.jpg`}
+          alt={dict.hero.title}
+          priority
+          className="mt-8 w-56 drop-shadow-2xl sm:w-64"
+        />
       </div>
     </section>
   );
