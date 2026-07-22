@@ -24,6 +24,7 @@ export function ScreenshotCarousel({
         role="region"
         aria-label={c.heading}
         tabIndex={0}
+        data-reveal
         className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-4 sm:px-8 md:gap-6 [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-container-low [&::-webkit-scrollbar]:hidden"
       >
         {CAPTURES.map((file, i) => (

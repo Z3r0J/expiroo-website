@@ -121,7 +121,7 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
 
       <div aria-live="polite">
         {status === 'success' && (
-          <div className="flex gap-3 rounded-2xl bg-fresh-container p-5 text-on-fresh-container">
+          <div className="flex gap-3 rounded-2xl bg-fresh-container p-5 text-on-fresh-container motion-safe:animate-[reveal-in_0.3s_var(--ease-reveal)]">
             <svg viewBox="0 0 24 24" className="mt-0.5 size-6 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M20 6 9 17l-5-5" />
             </svg>
@@ -131,7 +131,7 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
           </div>
         )}
         {status === 'error' && (
-          <div className="flex gap-3 rounded-2xl bg-expired-container p-5 text-on-expired-container">
+          <div className="flex gap-3 rounded-2xl bg-expired-container p-5 text-on-expired-container motion-safe:animate-[reveal-in_0.3s_var(--ease-reveal)]">
             <svg viewBox="0 0 24 24" className="mt-0.5 size-6 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M12 8v4M12 16h.01" />

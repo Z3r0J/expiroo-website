@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans, Work_Sans } from 'next/font/google';
 import '../globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { ScrollReveal } from '@/components/ScrollReveal';
 import { SITE_URL } from '@/lib/config';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
 
@@ -60,7 +61,19 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${jakarta.variable} ${workSans.variable} h-full`}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
+      <head>
+        {/* Enable reveal animations only when JS runs; no-JS HTML stays fully
+            visible (elements start hidden solely under `.js`). Runs before body
+            paint to avoid a flash of the pre-reveal state. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-surface text-on-surface antialiased">
         <a
           href="#main"
@@ -73,6 +86,7 @@ export default async function LocaleLayout({
           {children}
         </main>
         <Footer locale={locale} dict={dict} />
+        <ScrollReveal />
       </body>
     </html>
   );

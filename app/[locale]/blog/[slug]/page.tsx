@@ -69,7 +69,7 @@ export default async function PostPage({
 
       {post.image && (
         <div className="mx-auto -mt-10 max-w-4xl px-5 sm:px-8 md:-mt-14">
-          <div className="overflow-hidden rounded-3xl">
+          <div className="overflow-hidden rounded-3xl bg-surface-container-low">
             <Image
               src={post.image}
               alt=""

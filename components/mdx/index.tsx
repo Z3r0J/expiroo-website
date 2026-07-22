@@ -73,7 +73,7 @@ function MdxImage({ src, alt, width, height }: ComponentProps<'img'>) {
       width={Number(width) || 1536}
       height={Number(height) || 1024}
       sizes="(min-width: 768px) 70ch, 100vw"
-      className="my-6 h-auto w-full rounded-2xl"
+      className="my-6 h-auto w-full rounded-2xl bg-surface-container-low"
     />
   );
 }

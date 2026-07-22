@@ -7,14 +7,18 @@ export function FeatureGrid({ dict }: { dict: Dictionary }) {
   return (
     <section id="features" className="bg-surface py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="text-label text-primary">{f.eyebrow}</p>
-        <h2 className="text-headline mt-3 max-w-2xl text-on-surface">{f.heading}</h2>
+        <div data-reveal>
+          <p className="text-label text-primary">{f.eyebrow}</p>
+          <h2 className="text-headline mt-3 max-w-2xl text-on-surface">{f.heading}</h2>
+        </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
-          {f.items.map((item) => (
+          {f.items.map((item, i) => (
             <article
               key={item.title}
-              className="rounded-3xl bg-surface-container-lowest p-6 md:p-8"
+              data-reveal
+              style={{ '--reveal-delay': `${Math.min(i, 5) * 70}ms` } as React.CSSProperties}
+              className="rounded-3xl bg-surface-container-lowest p-6 md:p-8 motion-safe:transition-[transform,box-shadow] motion-safe:duration-200 hover:-translate-y-1 hover:shadow-ambient"
             >
               <span className="flex size-12 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
                 <Icon name={item.icon} className="size-6" />
@@ -30,7 +34,10 @@ export function FeatureGrid({ dict }: { dict: Dictionary }) {
           ))}
 
           {f.notvorrat && (
-            <article className="rounded-3xl bg-primary-container/40 p-6 sm:col-span-2 md:p-8 lg:col-span-3 lg:flex lg:items-center lg:justify-between lg:gap-8">
+            <article
+              data-reveal
+              className="rounded-3xl bg-primary-container/40 p-6 sm:col-span-2 md:p-8 lg:col-span-3 lg:flex lg:items-center lg:justify-between lg:gap-8"
+            >
               <div className="lg:max-w-2xl">
                 <span className="flex size-12 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
                   <Icon name="notvorrat" className="size-6" />
@@ -40,12 +47,12 @@ export function FeatureGrid({ dict }: { dict: Dictionary }) {
               </div>
               <Link
                 href={f.notvorrat.href}
-                className="mt-5 inline-flex shrink-0 items-center gap-1.5 font-bold text-primary transition-colors hover:text-primary-dim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface lg:mt-0"
+                className="group mt-5 inline-flex shrink-0 items-center gap-1.5 font-bold text-primary transition-colors hover:text-primary-dim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface lg:mt-0"
               >
                 {f.notvorrat.cta}
                 <svg
                   viewBox="0 0 24 24"
-                  className="size-4"
+                  className="size-4 motion-safe:transition-transform motion-safe:duration-200 group-hover:translate-x-0.5"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2.2}

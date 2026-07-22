@@ -12,13 +12,15 @@ export function WasteChart({ dict }: { dict: Dictionary }) {
           <p className="text-lead mt-4 text-on-surface-variant">{w.lead}</p>
         </div>
 
-        <BarChart
-          bars={w.bars}
-          caption={w.caption}
-          sourceLabel={w.sourceLabel}
-          sourceUrl={w.sourceUrl}
-          ariaLabel={w.ariaLabel}
-        />
+        <div data-reveal>
+          <BarChart
+            bars={w.bars}
+            caption={w.caption}
+            sourceLabel={w.sourceLabel}
+            sourceUrl={w.sourceUrl}
+            ariaLabel={w.ariaLabel}
+          />
+        </div>
       </div>
     </section>
   );

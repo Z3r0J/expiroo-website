@@ -49,6 +49,9 @@
   /* Shadow ban with two sanctioned exceptions */
   --shadow-ambient: 0 8px 32px rgb(45 47 47 / 0.06);
   --shadow-phone: 0 24px 64px rgb(4 23 10 / 0.35);
+
+  /* Motion (shuri §WS5) — decelerating ease for scroll reveals */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /*
@@ -240,5 +243,53 @@
     html {
       scroll-behavior: smooth;
     }
+  }
+}
+
+/*
+ * Motion system (shuri §WS5) — CSS-first scroll reveal.
+ * Gated behind `.js` (set by an inline script in [locale]/layout.tsx) so the
+ * static/no-JS HTML renders fully visible: zero SEO / no-JS risk. Only
+ * opacity/transform animate; reveal is one-way (never re-hidden on scroll-up).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-reveal);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * FAQ open/close animation (native <details>). Uses ::details-content
+ * (Chrome/Edge 131+); older Firefox/Safari degrade to an instant toggle.
+ * interpolate-size lets block-size animate to/from `auto`.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 0.3s var(--ease-reveal),
+      content-visibility 0.3s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+/* ContactForm success/error boxes fade in (motion-safe utility) */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 }
