@@ -22,6 +22,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 alt=""
                 width={550}
                 height={584}
+                sizes="32px"
                 className="h-8 w-auto"
               />
               <span className="font-display text-lg font-bold text-white">Expiroo</span>
@@ -39,6 +40,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 alt=""
                 width={528}
                 height={551}
+                sizes="20px"
                 className="h-5 w-auto"
               />
               <span className="font-medium">{PARENT_COMPANY}</span>

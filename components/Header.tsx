@@ -21,6 +21,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             width={550}
             height={584}
             priority
+            sizes="36px"
             className="h-9 w-auto"
           />
           <span className="font-display text-xl font-bold text-white">Expiroo</span>
