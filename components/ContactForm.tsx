@@ -21,6 +21,10 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
     const form = event.currentTarget;
     const data = new FormData(form);
     if (data.get('botcheck')) return; // honeypot tripped — silently drop
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
+    if (!name || !email || !message) return;
     if (!ACCESS_KEY) {
       setStatus('error');
       return;
@@ -32,9 +36,9 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: ACCESS_KEY,
-          name: data.get('name'),
-          email: data.get('email'),
-          message: data.get('message'),
+          name,
+          email,
+          message,
           from_name: 'Expiroo website',
           subject: 'New message from expiroo.app',
         }),
@@ -56,7 +60,6 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
   return (
     <form
       onSubmit={handleSubmit}
-      noValidate
       className="space-y-8 rounded-3xl bg-surface-container-lowest p-6 md:p-10"
     >
       {/* Web3Forms honeypot — hidden from users, catches bots. */}
