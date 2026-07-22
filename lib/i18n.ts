@@ -111,6 +111,7 @@ export type Dictionary = {
   footer: {
     tagline: string;
     betaNote: string;
+    publisher: string;
     productHeading: string;
     blog: string;
     contact: string;
@@ -118,8 +119,10 @@ export type Dictionary = {
     legalHeading: string;
     privacy: string;
     imprint: string;
+    terms: string;
     rights: string;
     language: string;
+    notAvailable: string;
   };
 };
 
@@ -141,11 +144,11 @@ const en: Dictionary = {
   },
   features: {
     eyebrow: 'Features',
-    heading: 'Everything you need to stop throwing food away',
+    heading: 'The features that keep food out of the bin',
     items: [
       {
         icon: 'reminders',
-        title: 'Reminders that actually arrive',
+        title: 'Alerts that reach you in time',
         body: 'Get notified 7, 3 and 1 days before an item expires — and again on the day. Set your own schedule or switch to a single daily summary.',
       },
       {
@@ -166,11 +169,11 @@ const en: Dictionary = {
       {
         icon: 'waste',
         title: 'See what you’re wasting',
-        body: 'The waste report shows what you consumed against what you threw out, month by month. Most people are surprised the first time.',
+        body: 'The waste report shows what you consumed against what you threw out, month by month. The first month’s total is usually a wake-up call.',
       },
       {
         icon: 'privacy',
-        title: 'Private by design',
+        title: 'No cloud, no account, no tracking',
         body: 'Your inventory lives in a local database on your device. No login, no account, no server collecting what you eat.',
         chip: 'No account · Offline',
       },
@@ -190,7 +193,7 @@ const en: Dictionary = {
   waste: {
     eyebrow: 'The problem',
     heading: 'Households throw away the most',
-    lead: 'Worldwide, households waste about 79 kg of food per person every year — part of 1.05 billion tonnes thrown away in 2022. Expiroo is built to shrink your share.',
+    lead: 'Worldwide, households waste about 79 kg of food per person every year — part of 1.05 billion tonnes thrown away in 2022. Expiroo helps you keep your part of it down.',
     caption: 'Share of global food waste, 2022',
     ariaLabel:
       'Bar chart: households account for 60% of global food waste, the rest of the supply chain 40%.',
@@ -203,7 +206,7 @@ const en: Dictionary = {
   },
   faq: {
     eyebrow: 'FAQ',
-    heading: 'Questions, answered',
+    heading: 'The questions people ask most',
     items: [
       {
         q: 'Is Expiroo free?',
@@ -264,6 +267,7 @@ const en: Dictionary = {
   footer: {
     tagline: 'The food expiration tracker that keeps everything on your phone.',
     betaNote: 'Currently in closed beta on Google Play.',
+    publisher: 'An app by',
     productHeading: 'Product',
     blog: 'Blog',
     contact: 'Contact',
@@ -271,8 +275,10 @@ const en: Dictionary = {
     legalHeading: 'Legal',
     privacy: 'Privacy',
     imprint: 'Imprint',
+    terms: 'Terms',
     rights: 'All rights reserved.',
     language: 'Language',
+    notAvailable: 'Not available in this language',
   },
 };
 
@@ -294,11 +300,11 @@ const es: Dictionary = {
   },
   features: {
     eyebrow: 'Funciones',
-    heading: 'Todo para dejar de tirar comida',
+    heading: 'Funciones para que no se te pase ni una fecha',
     items: [
       {
         icon: 'reminders',
-        title: 'Recordatorios que sí llegan',
+        title: 'Avisos que no se te escapan',
         body: 'Recibe un aviso 7, 3 y 1 días antes de que un producto venza, y también el mismo día. Elige tus intervalos o cámbialos por un resumen diario.',
       },
       {
@@ -319,11 +325,11 @@ const es: Dictionary = {
       {
         icon: 'waste',
         title: 'Mira cuánto estás botando',
-        body: 'El reporte de desperdicio te muestra lo que consumiste frente a lo que tiraste, mes a mes. A casi todos les sorprende la primera vez.',
+        body: 'El reporte de desperdicio te muestra lo que consumiste frente a lo que tiraste, mes a mes. El total del primer mes suele abrir los ojos.',
       },
       {
         icon: 'privacy',
-        title: 'Privada por diseño',
+        title: 'Privacidad sin letra pequeña',
         body: 'Tu inventario vive en una base de datos local, en tu dispositivo. Sin login, sin cuenta y sin ningún servidor recopilando lo que comes.',
         chip: 'Sin cuenta · Offline',
       },
@@ -343,7 +349,7 @@ const es: Dictionary = {
   waste: {
     eyebrow: 'El problema',
     heading: 'Los hogares son los que más tiran',
-    lead: 'En España se desperdician 1.125 millones de kg de comida al año — unos 24,38 kg por persona. Expiroo está hecho para reducir tu parte.',
+    lead: 'En España se desperdician 1.125 millones de kg de comida al año — unos 24,38 kg por persona. Expiroo está para que tu parte de esa cifra baje.',
     caption: 'Desperdicio en el ámbito del consumo (no incluye producción ni distribución)',
     ariaLabel:
       'Gráfico de barras: dentro del desperdicio medido en el ámbito del consumo, los hogares concentran el 97,5 % y el consumo fuera del hogar el 2,5 %. No incluye producción ni distribución.',
@@ -417,14 +423,17 @@ const es: Dictionary = {
   footer: {
     tagline: 'El control de fechas de vencimiento que guarda todo en tu teléfono.',
     betaNote: 'Actualmente en beta cerrada en Google Play.',
+    publisher: 'Una app de',
     productHeading: 'Producto',
     blog: 'Blog',
     contact: 'Contacto',
     legalHeading: 'Legal',
     privacy: 'Privacidad',
     imprint: 'Aviso legal',
+    terms: 'Términos',
     rights: 'Todos los derechos reservados.',
     language: 'Idioma',
+    notAvailable: 'No disponible en este idioma',
   },
 };
 
@@ -446,11 +455,11 @@ const de: Dictionary = {
   },
   features: {
     eyebrow: 'Funktionen',
-    heading: 'Alles, um nichts mehr wegzuwerfen',
+    heading: 'Funktionen, die dafür sorgen, dass nichts vergammelt',
     items: [
       {
         icon: 'reminders',
-        title: 'Erinnerungen, die ankommen',
+        title: 'Erinnerungen, die dich wirklich erreichen',
         body: 'Du wirst 7, 3 und 1 Tag vor Ablauf benachrichtigt — und noch einmal am Tag selbst. Die Intervalle stellst du selbst ein oder wechselst zu einer Tageszusammenfassung.',
       },
       {
@@ -471,11 +480,11 @@ const de: Dictionary = {
       {
         icon: 'waste',
         title: 'Sieh, was weggeworfen wird',
-        body: 'Der Verschwendungs-Bericht stellt Monat für Monat gegenüber, was du verbraucht und was du entsorgt hast. Beim ersten Mal sind die meisten überrascht.',
+        body: 'Der Verschwendungs-Bericht stellt Monat für Monat gegenüber, was du verbraucht und was du entsorgt hast. Die Summe des ersten Monats ist oft ein Weckruf.',
       },
       {
         icon: 'privacy',
-        title: 'Datenschutz von Anfang an',
+        title: 'Deine Daten bleiben bei dir',
         body: 'Dein Bestand liegt in einer lokalen Datenbank auf deinem Gerät. Kein Login, kein Konto, kein Server, der mitschreibt, was du isst.',
         chip: 'Ohne Konto · Offline',
       },
@@ -501,7 +510,7 @@ const de: Dictionary = {
   waste: {
     eyebrow: 'Das Problem',
     heading: 'Haushalte werfen am meisten weg',
-    lead: 'In Deutschland fallen 10,8 Mio. Tonnen Lebensmittelabfälle pro Jahr an — rund 74,5 kg pro Kopf. Expiroo hilft dir, deinen Anteil zu senken.',
+    lead: 'In Deutschland fallen 10,8 Mio. Tonnen Lebensmittelabfälle pro Jahr an — rund 74,5 kg pro Kopf. Expiroo hilft dir, deinen Teil davon kleiner zu halten.',
     caption: 'Anteil an der Lebensmittelverschwendung',
     ariaLabel:
       'Balkendiagramm: Haushalte verursachen 58 % der Lebensmittelabfälle, der Rest der Kette 42 %.',
@@ -575,14 +584,17 @@ const de: Dictionary = {
   footer: {
     tagline: 'Der Haltbarkeits-Tracker, der alles auf deinem Gerät behält.',
     betaNote: 'Derzeit in geschlossener Beta bei Google Play.',
+    publisher: 'Eine App von',
     productHeading: 'Produkt',
     blog: 'Blog',
     contact: 'Kontakt',
     legalHeading: 'Rechtliches',
     privacy: 'Datenschutz',
     imprint: 'Impressum',
+    terms: 'Nutzungsbedingungen',
     rights: 'Alle Rechte vorbehalten.',
     language: 'Sprache',
+    notAvailable: 'In dieser Sprache nicht verfügbar',
   },
 };
 
