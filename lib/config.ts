@@ -9,8 +9,8 @@
 
 export const SITE_URL = 'https://expiroo.app';
 
-// TODO(user): replace with the real closed-beta Google Group invite link.
-export const BETA_URL = '#';
+// Closed-beta Google Group — join here first, then install via the Play testing link.
+export const BETA_URL = 'https://groups.google.com/g/expiroo-testers';
 
 // TODO(user): Play Store listing URL once the app is public.
 export const PLAY_URL = '#';

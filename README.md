@@ -50,8 +50,8 @@ pre-commit scan).
 These are placeholders or manual steps left for the site owner — search the
 codebase for `TODO(user)` to find them again:
 
-- [ ] Replace `BETA_URL` in `lib/config.ts` (`'#'` placeholder) with the real
-      closed-beta Google Group invite link.
+- [x] Replace `BETA_URL` in `lib/config.ts` with the real closed-beta Google
+      Group invite link.
 - [ ] Replace `PLAY_URL` in `lib/config.ts` (`'#'` placeholder) with the Play
       Store listing URL once the app is public.
 - [ ] Create a Web3Forms access key at [web3forms.com](https://web3forms.com)

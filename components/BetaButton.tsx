@@ -20,6 +20,8 @@ export function BetaButton({
   return (
     <a
       href={BETA_URL}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`items-center justify-center rounded-full bg-linear-to-b from-primary to-primary-dim font-bold text-on-primary motion-safe:transition motion-safe:duration-200 hover:brightness-110 motion-safe:hover:scale-[1.02] active:scale-[0.98] active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 ${ring} ${className}`}
     >
       {children}
