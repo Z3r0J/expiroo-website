@@ -5,6 +5,7 @@ import '../globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { Analytics } from '@vercel/analytics/next';
 import { SITE_URL } from '@/lib/config';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
 
@@ -76,6 +77,7 @@ export default async function LocaleLayout({
         </main>
         <Footer locale={locale} dict={dict} />
         <ScrollReveal />
+        <Analytics />
       </body>
     </html>
   );
