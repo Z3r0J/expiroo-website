@@ -185,6 +185,7 @@ const en: Dictionary = {
     slides: [
       'Home screen sorting items by urgency',
       'An expiry reminder notification',
+      'Barcode scanner detecting a product',
       'Settings — no account required',
       'Fridge, freezer and pantry locations',
       'Monthly food waste report',
@@ -341,6 +342,7 @@ const es: Dictionary = {
     slides: [
       'Pantalla principal ordenando por urgencia',
       'Una notificación de recordatorio de vencimiento',
+      'Escáner de código de barras detectando un producto',
       'Ajustes — sin necesidad de cuenta',
       'Ubicaciones: refrigerador, congelador y alacena',
       'Reporte mensual de desperdicio',
@@ -502,6 +504,7 @@ const de: Dictionary = {
     slides: [
       'Startbildschirm nach Dringlichkeit sortiert',
       'Eine Erinnerung vor dem Ablaufdatum',
+      'Barcode-Scanner erkennt ein Produkt',
       'Einstellungen — ohne Konto',
       'Orte: Kühlschrank, Gefrierschrank und Vorrat',
       'Monatlicher Verschwendungs-Bericht',

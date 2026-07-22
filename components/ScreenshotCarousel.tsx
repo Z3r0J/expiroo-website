@@ -3,7 +3,7 @@ import { DeviceFrame } from './DeviceFrame';
 
 // Raw captures per locale (never the composited Play screenshots). Order matches
 // dict.carousel.slides.
-const CAPTURES = ['01-home', '02-notify', '04-settings', '05-locations', '06-waste'] as const;
+const CAPTURES = ['01-home', '02-notify', '03-scan', '04-settings', '05-locations', '06-waste'] as const;
 
 export function ScreenshotCarousel({
   locale,
