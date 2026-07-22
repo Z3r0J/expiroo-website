@@ -1,4 +1,4 @@
-import { SITE_URL } from './config';
+import { PARENT_COMPANY, PARENT_COMPANY_URL, SITE_URL } from './config';
 import type { Dictionary, Locale } from './i18n';
 import type { PostMeta } from './posts';
 
@@ -59,6 +59,11 @@ export function organizationLd() {
     name: 'Expiroo',
     url: SITE_URL,
     logo: `${SITE_URL}/images/expiroo-logo.png`,
+    parentOrganization: {
+      '@type': 'Organization',
+      name: PARENT_COMPANY,
+      url: PARENT_COMPANY_URL,
+    },
   };
 }
 

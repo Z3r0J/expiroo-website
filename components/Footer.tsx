@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { PARENT_COMPANY, PARENT_COMPANY_URL } from '@/lib/config';
 import type { Dictionary, Locale } from '@/lib/i18n';
 import { LocaleSwitcher } from './LocaleSwitcher';
 
@@ -27,6 +28,20 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             </div>
             <p className="mt-3 max-w-xs text-sm text-white/60">{f.tagline}</p>
             <p className="mt-4 text-xs text-white/50">{f.betaNote}</p>
+            <a
+              href={PARENT_COMPANY_URL}
+              rel="noopener"
+              className="mt-6 inline-flex items-center gap-2 rounded text-xs text-white/60 transition-colors hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-night"
+            >
+              {f.publisher}
+              <Image
+                src="/images/fusion-core-apps.png"
+                alt={PARENT_COMPANY}
+                width={528}
+                height={551}
+                className="h-5 w-auto brightness-0 invert opacity-70"
+              />
+            </a>
           </div>
 
           <nav aria-label={f.productHeading}>
@@ -49,6 +64,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <Link href={`/${locale}/privacy`} className={linkClass}>
               {f.privacy}
             </Link>
+            <Link href={`/${locale}/terms`} className={linkClass}>
+              {f.terms}
+            </Link>
             <Link href={`/${locale}/imprint`} className={linkClass}>
               {f.imprint}
             </Link>
@@ -56,10 +74,14 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 pt-6">
-          <p className="text-xs text-white/40">
-            © {year} Expiroo · {f.rights}
+          <p className="text-xs text-white/50">
+            © {year} {PARENT_COMPANY} · {f.rights}
           </p>
-          <LocaleSwitcher currentLocale={locale} label={f.language} />
+          <LocaleSwitcher
+            currentLocale={locale}
+            label={f.language}
+            notAvailableLabel={f.notAvailable}
+          />
         </div>
       </div>
     </footer>

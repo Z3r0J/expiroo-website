@@ -17,3 +17,8 @@ export const PLAY_URL = '#';
 
 // TODO(user): confirm the support@expiroo.app mailbox exists and is monitored.
 export const CONTACT_EMAIL = 'support@expiroo.app';
+
+// Parent company / publisher. Exact spelling verified in the parent site's ©
+// line; a proper noun — never translated.
+export const PARENT_COMPANY = 'FusionCore Apps';
+export const PARENT_COMPANY_URL = 'https://www.fusioncoreapps.com/';
