@@ -36,11 +36,12 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {f.publisher}
               <Image
                 src="/images/fusion-core-apps.png"
-                alt={PARENT_COMPANY}
+                alt=""
                 width={528}
                 height={551}
-                className="h-5 w-auto brightness-0 invert opacity-70"
+                className="h-5 w-auto"
               />
+              <span className="font-medium">{PARENT_COMPANY}</span>
             </a>
           </div>
 
