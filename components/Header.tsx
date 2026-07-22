@@ -41,7 +41,11 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {dict.nav.contact}
             </Link>
           </nav>
-          <LocaleSwitcher currentLocale={locale} label={dict.footer.language} />
+          <LocaleSwitcher
+            currentLocale={locale}
+            label={dict.footer.language}
+            notAvailableLabel={dict.footer.notAvailable}
+          />
           <BetaButton className="hidden min-h-11 px-5 text-sm md:inline-flex">
             {dict.cta.beta}
           </BetaButton>
