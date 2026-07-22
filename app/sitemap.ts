@@ -4,7 +4,7 @@ import { defaultLocale, locales, type Locale } from '@/lib/i18n';
 import { getPostSlugs } from '@/lib/posts';
 
 // Static routes that exist in every locale.
-const SHARED_PATHS = ['', '/blog', '/contact', '/privacy', '/imprint'] as const;
+const SHARED_PATHS = ['', '/blog', '/contact', '/privacy', '/terms', '/imprint'] as const;
 
 // Alternates for a route, restricted to the locales that really have it, plus
 // x-default=en (plan correction C2 — never point at a URL that would 404).
