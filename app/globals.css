@@ -248,18 +248,20 @@
 
 /*
  * Motion system (shuri §WS5) — CSS-first scroll reveal.
- * Gated behind `.js` (set by an inline script in [locale]/layout.tsx) so the
- * static/no-JS HTML renders fully visible: zero SEO / no-JS risk. Only
- * opacity/transform animate; reveal is one-way (never re-hidden on scroll-up).
+ * Gated behind `@media (scripting: enabled)` so the static/no-JS HTML renders
+ * fully visible: zero SEO / no-JS risk. Bots and no-JS clients don't match and
+ * see everything; browsers without support for the query drop the block too
+ * (no animation, content visible). Only opacity/transform animate; reveal is
+ * one-way (never re-hidden on scroll-up).
  */
-@media (prefers-reduced-motion: no-preference) {
-  .js [data-reveal] {
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  [data-reveal] {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.6s ease, transform 0.6s var(--ease-reveal);
     transition-delay: var(--reveal-delay, 0s);
   }
-  .js [data-reveal].is-revealed {
+  [data-reveal].is-revealed {
     opacity: 1;
     transform: none;
   }
