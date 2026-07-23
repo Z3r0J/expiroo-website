@@ -51,7 +51,10 @@ These are placeholders or manual steps left for the site owner — search the
 codebase for `TODO(user)` to find them again:
 
 - [x] Replace `BETA_URL` in `lib/config.ts` with the real closed-beta Google
-      Group invite link.
+      Group invite link. UI CTAs (`BetaButton`) no longer link to it directly —
+      they route to the `/{locale}/blog/${BETA_POST_SLUG}` join tutorial post
+      (`join-expiroo-beta`, all three locales); `BETA_URL` now appears only
+      inside that post's content.
 - [ ] Replace `PLAY_URL` in `lib/config.ts` (`'#'` placeholder) with the Play
       Store listing URL once the app is public.
 - [ ] Create a Web3Forms access key at [web3forms.com](https://web3forms.com)
@@ -102,6 +105,8 @@ lib/                 config.ts, i18n.ts (dictionaries), legal.ts, posts.ts,
                      routes.ts, seo.ts, jsonld.ts
 components/           shared UI + components/mdx (MDX component map)
 scripts/og_hero.py    local-only hero/OG image generator
+scripts/annotate_screenshot.py  local-only tutorial screenshot cropper/annotator
+                     (companion to og_hero.py, output committed)
 proxy.ts              root `/` locale-detect redirect
 ```
 

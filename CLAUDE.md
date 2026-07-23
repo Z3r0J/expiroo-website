@@ -36,7 +36,7 @@ There are no tests. Verification = `tsc` + `build` + inspecting generated HTML i
 - **No Expiroo price anywhere** — not in copy, FAQ, JSON-LD (`MobileApplication` has no `offers`). Say "one-time purchase, no subscription" / "Einmaliger Kauf, kein Abo". `lib/config.ts` exports no price constant on purpose; the price will change over time.
 - **Every statistic needs a verified source** cited inline or via `PostChart`'s `source`/`sourceUrl`. Never invent figures; unverifiable claims are omitted or explicitly flagged. Competitor prices carry an "as of <month year>" note.
 - **Food-safety posts** (expired/shelf-life topics) include the `Disclaimer` MDX component.
-- **Honest beta messaging**: the app is in closed beta on Google Play; CTA goes to `BETA_URL` in `lib/config.ts` (placeholder until the user provides the Google Group link).
+- **Honest beta messaging**: the app is in closed beta on Google Play; every CTA (`BetaButton`, used in Hero, Header, the BetaCTA banner, and `/en/alternatives`) routes internally to the join tutorial post (`BETA_POST_SLUG` in `lib/config.ts`, slug `join-expiroo-beta`, published in all three locales). The raw Google Group link (`BETA_URL`) appears only inside that post's content, not in any UI CTA.
 
 ## Design system ("Botanical Editorial" — mirrors the app)
 
