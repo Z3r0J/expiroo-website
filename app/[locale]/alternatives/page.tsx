@@ -157,6 +157,7 @@ export default async function AlternativesPage({
 
           <div className="mt-10">
             <BetaButton
+              locale="en"
               className="inline-flex min-h-13 px-8 text-base"
               ringOffset="surface"
             >

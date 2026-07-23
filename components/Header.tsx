@@ -47,7 +47,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             label={dict.footer.language}
             notAvailableLabel={dict.footer.notAvailable}
           />
-          <BetaButton className="hidden min-h-11 px-5 text-sm md:inline-flex">
+          <BetaButton locale={locale} className="hidden min-h-11 px-5 text-sm md:inline-flex">
             {dict.cta.beta}
           </BetaButton>
         </div>

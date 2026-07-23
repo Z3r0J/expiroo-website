@@ -52,7 +52,7 @@ export default async function HomePage({
       <ScreenshotCarousel locale={locale} dict={dict} />
       <WasteChart dict={dict} />
       <Faq dict={dict} />
-      <BetaCTA dict={dict} />
+      <BetaCTA locale={locale} dict={dict} />
     </>
   );
 }
