@@ -2,11 +2,13 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { defaultLocale, type Locale } from '@/lib/i18n';
 
 /**
- * Root redirect only (Next 16.2 renamed the "middleware" convention to "proxy";
- * behavior is identical). Owns `/` and nothing else.
+ * Locale prefixer for unprefixed public URLs (Next 16.2 renamed the "middleware"
+ * convention to "proxy"; behavior is identical). Owns `/`, `/privacy` and `/terms`
+ * — the last two are linked without a locale prefix from the Android app.
  *
- * Picks a locale from Accept-Language: de → /de, es → /es, everything else → /en.
- * A lightweight parser (no negotiator dep) is enough for three locales.
+ * Picks a locale from Accept-Language: de → /de, es → /es, everything else → /en,
+ * then preserves the pathname (`/privacy` → `/{locale}/privacy`). A lightweight
+ * parser (no negotiator dep) is enough for three locales.
  */
 function detectLocale(request: NextRequest): Locale {
   const header = request.headers.get('accept-language');
@@ -34,10 +36,12 @@ function detectLocale(request: NextRequest): Locale {
  */
 export function proxy(request: NextRequest) {
   const locale = detectLocale(request);
-  return NextResponse.redirect(new URL(`/${locale}`, request.url), 307);
+  const { pathname } = request.nextUrl;
+  const suffix = pathname === '/' ? '' : pathname;
+  return NextResponse.redirect(new URL(`/${locale}${suffix}`, request.url), 307);
 }
 
-// Scoped to exactly '/' — never runs on /_next, /images, sitemap.xml, etc.
+// Scoped to exactly these paths — never runs on /_next, /images, sitemap.xml, etc.
 export const config = {
-  matcher: '/',
+  matcher: ['/', '/privacy', '/terms'],
 };

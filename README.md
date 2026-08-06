@@ -10,8 +10,10 @@ pages, and a contact form.
 - TypeScript, `strict: true`
 - Tailwind CSS v4
 - MDX blog via `next-mdx-remote` + `gray-matter`
-- i18n: `/de`, `/en`, `/es` — root `/` redirects via `proxy.ts` (Next 16's
-  renamed `middleware` convention), 307 based on `Accept-Language`
+- i18n: `/de`, `/en`, `/es` — root `/` and the unprefixed legal routes
+  (`/privacy`, `/terms`, linked without a locale from the Android app)
+  redirect via `proxy.ts` (Next 16's renamed `middleware` convention),
+  307 based on `Accept-Language`
 - Contact form: [Web3Forms](https://web3forms.com) (no backend)
 - Hosting target: Vercel, custom domain `expiroo.app`
 
