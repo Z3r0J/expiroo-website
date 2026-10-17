@@ -5,10 +5,13 @@ import { Faq } from '@/components/Faq';
 import { FeatureGrid } from '@/components/FeatureGrid';
 import { Hero } from '@/components/Hero';
 import { JsonLd } from '@/components/JsonLd';
+import { MorePosts } from '@/components/MorePosts';
 import { ScreenshotCarousel } from '@/components/ScreenshotCarousel';
 import { WasteChart } from '@/components/WasteChart';
+import { BETA_POST_SLUG } from '@/lib/config';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
-import { faqPageLd, mobileApplicationLd, organizationLd } from '@/lib/jsonld';
+import { faqPageLd, mobileApplicationLd, organizationLd, websiteLd } from '@/lib/jsonld';
+import { getLatestPosts } from '@/lib/posts';
 import { buildMetadata } from '@/lib/seo';
 
 export function generateStaticParams() {
@@ -45,12 +48,20 @@ export default async function HomePage({
     <>
       <JsonLd data={mobileApplicationLd(locale, dict)} />
       <JsonLd data={organizationLd()} />
+      <JsonLd data={websiteLd()} />
       <JsonLd data={faqPageLd(dict)} />
 
       <Hero locale={locale} dict={dict} />
       <FeatureGrid dict={dict} />
       <ScreenshotCarousel locale={locale} dict={dict} />
       <WasteChart dict={dict} />
+      <MorePosts
+        locale={locale}
+        dict={dict}
+        posts={getLatestPosts(locale, 3, [BETA_POST_SLUG])}
+        eyebrow={dict.latestPosts.eyebrow}
+        heading={dict.latestPosts.heading}
+      />
       <Faq dict={dict} />
       <BetaCTA locale={locale} dict={dict} />
     </>

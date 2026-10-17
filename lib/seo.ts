@@ -16,6 +16,11 @@ type BuildMetadataArgs = {
   /** OG/Twitter image override (absolute path). Defaults to the locale feature graphic. */
   image?: string;
   ogType?: 'website' | 'article';
+  /** Keep the page out of the index while letting crawlers follow its links. */
+  noindex?: boolean;
+  /** ISO dates for `article:published_time` / `article:modified_time` (articles only). */
+  publishedTime?: string;
+  modifiedTime?: string;
 };
 
 /**
@@ -30,6 +35,9 @@ export function buildMetadata({
   availableLocales,
   image,
   ogType = 'website',
+  noindex = false,
+  publishedTime,
+  modifiedTime,
 }: BuildMetadataArgs): Metadata {
   const canonical = `${SITE_URL}/${locale}${path}`;
 
@@ -47,6 +55,7 @@ export function buildMetadata({
   return {
     title: { absolute: title },
     description,
+    ...(noindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical,
       languages,
@@ -59,6 +68,7 @@ export function buildMetadata({
       title,
       description,
       images: [{ url: ogImage, alt: title }],
+      ...(ogType === 'article' && { publishedTime, modifiedTime }),
     },
     twitter: {
       card: 'summary_large_image',
