@@ -227,6 +227,17 @@
   .mdx-table tbody tr:nth-child(even) td {
     background: color-mix(in oklab, var(--color-surface-container-low) 60%, transparent);
   }
+  /* Phones (below Tailwind's sm): tighter cells and wrapping headers so 3-column
+     tables fit their scroll box instead of clipping the last column. */
+  @media (max-width: 639px) {
+    .mdx-table thead th,
+    .mdx-table td {
+      padding: 0.5rem 0.625rem;
+    }
+    .mdx-table thead th {
+      white-space: normal;
+    }
+  }
 }
 
 @layer base {
