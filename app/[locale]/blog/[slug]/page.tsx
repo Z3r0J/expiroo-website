@@ -5,9 +5,16 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { JsonLd } from '@/components/JsonLd';
 import { mdxComponents } from '@/components/mdx';
+import { MorePosts } from '@/components/MorePosts';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
-import { articleLd } from '@/lib/jsonld';
-import { formatDate, getLocalesForSlug, getPost, getPostSlugs } from '@/lib/posts';
+import { articleLd, breadcrumbLd } from '@/lib/jsonld';
+import {
+  formatDate,
+  getLocalesForSlug,
+  getPost,
+  getPostSlugs,
+  getRelatedPosts,
+} from '@/lib/posts';
 import { buildMetadata } from '@/lib/seo';
 
 export const dynamicParams = false;
@@ -35,6 +42,8 @@ export async function generateMetadata({
     availableLocales: getLocalesForSlug(slug),
     image: post.image,
     ogType: 'article',
+    publishedTime: post.date,
+    modifiedTime: post.updated || post.date,
   });
 }
 
@@ -52,6 +61,7 @@ export default async function PostPage({
   return (
     <>
       <JsonLd data={articleLd(locale, post)} />
+      <JsonLd data={breadcrumbLd(locale, post)} />
 
       <section className="bg-mesh-wide pt-28 pb-20 md:pt-32 md:pb-28">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
@@ -61,6 +71,12 @@ export default async function PostPage({
           <h1 className="text-headline mt-3 max-w-3xl text-white">{post.title}</h1>
           <p className="mt-4 text-sm text-white/60">
             <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
+            {post.updated && post.updated !== post.date && (
+              <>
+                {` · ${dict.blog.updated} `}
+                <time dateTime={post.updated}>{formatDate(post.updated, locale)}</time>
+              </>
+            )}
             {post.readingMinutes > 0 &&
               ` · ${post.readingMinutes} ${dict.blog.minRead}`}
           </p>
@@ -90,6 +106,14 @@ export default async function PostPage({
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
         />
       </article>
+
+      <MorePosts
+        locale={locale}
+        dict={dict}
+        posts={getRelatedPosts(locale, slug, 3)}
+        heading={dict.blog.related}
+        tone="surface"
+      />
     </>
   );
 }

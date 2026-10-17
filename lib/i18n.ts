@@ -78,6 +78,7 @@ export type Dictionary = {
     sourceLabel: string;
     sourceUrl: string;
   };
+  latestPosts: { eyebrow: string; heading: string };
   faq: { eyebrow: string; heading: string; items: FaqItem[] };
   betaBanner: {
     headingLead: string;
@@ -91,6 +92,9 @@ export type Dictionary = {
     description: string;
     empty: string;
     minRead: string;
+    related: string;
+    allPosts: string;
+    updated: string;
   };
   contact: {
     eyebrow: string;
@@ -128,7 +132,7 @@ export type Dictionary = {
 
 const en: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Food expiration date tracker for your fridge & pantry',
+    defaultTitle: 'Expiroo: Food Expiry & Pantry Inventory App for Android',
     defaultDescription:
       'Expiroo tracks food expiration dates across your fridge, freezer and pantry and reminds you before food goes bad. No account, works offline. One-time purchase.',
   },
@@ -205,6 +209,10 @@ const en: Dictionary = {
     sourceLabel: 'UNEP Food Waste Index Report 2024',
     sourceUrl: 'https://www.unep.org/resources/publication/food-waste-index-report-2024',
   },
+  latestPosts: {
+    eyebrow: 'From the blog',
+    heading: 'Guides to waste less food',
+  },
   faq: {
     eyebrow: 'FAQ',
     heading: 'The questions people ask most',
@@ -248,6 +256,9 @@ const en: Dictionary = {
       'Practical guides on food storage, expiration dates and cutting food waste — from the team behind Expiroo.',
     empty: 'No articles yet — check back soon.',
     minRead: 'min read',
+    related: 'Keep reading',
+    allPosts: 'All articles',
+    updated: 'Updated',
   },
   contact: {
     eyebrow: 'Contact',
@@ -285,7 +296,7 @@ const en: Dictionary = {
 
 const es: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Control de fechas de vencimiento para tu refrigerador y alacena',
+    defaultTitle: 'Expiroo: app para controlar fechas de vencimiento',
     defaultDescription:
       'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad que te avisa antes de que se eche a perder.',
   },
@@ -362,6 +373,10 @@ const es: Dictionary = {
     sourceLabel: 'MAPA, Desperdicio Alimentario 2024',
     sourceUrl: 'https://www.mapa.gob.es',
   },
+  latestPosts: {
+    eyebrow: 'Del blog',
+    heading: 'Guías para desperdiciar menos comida',
+  },
   faq: {
     eyebrow: 'Preguntas',
     heading: 'Preguntas frecuentes',
@@ -405,6 +420,9 @@ const es: Dictionary = {
       'Guías prácticas sobre conservación de alimentos, fechas de vencimiento y cómo desperdiciar menos — del equipo de Expiroo.',
     empty: 'Todavía no hay artículos — vuelve pronto.',
     minRead: 'min de lectura',
+    related: 'Sigue leyendo',
+    allPosts: 'Todos los artículos',
+    updated: 'Actualizado',
   },
   contact: {
     eyebrow: 'Contacto',
@@ -441,7 +459,7 @@ const es: Dictionary = {
 
 const de: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo — Kühlschrank- & Vorrats-App mit Ablauf-Erinnerung',
+    defaultTitle: 'Expiroo: Kühlschrank-App mit MHD-Erinnerung für Android',
     defaultDescription:
       'Die Vorrats- & Kühlschrank-App, die dein Haltbarkeitsdatum (MHD) im Blick behält und dich erinnert, bevor etwas abläuft. Ohne Konto, offline. Einmaliger Kauf.',
   },
@@ -524,6 +542,10 @@ const de: Dictionary = {
     sourceLabel: 'BMLEH / UBA, 2022',
     sourceUrl: 'https://www.bmleh.de',
   },
+  latestPosts: {
+    eyebrow: 'Aus dem Blog',
+    heading: 'Ratgeber gegen Lebensmittel\u00ADverschwendung',
+  },
   faq: {
     eyebrow: 'FAQ',
     heading: 'Häufige Fragen',
@@ -567,6 +589,9 @@ const de: Dictionary = {
       'Praktische Ratgeber zu Lebensmitteln, Haltbarkeit und weniger Verschwendung — vom Team hinter Expiroo.',
     empty: 'Noch keine Artikel — schau bald wieder vorbei.',
     minRead: 'Min. Lesezeit',
+    related: 'Weiterlesen',
+    allPosts: 'Alle Artikel',
+    updated: 'Aktualisiert',
   },
   contact: {
     eyebrow: 'Kontakt',

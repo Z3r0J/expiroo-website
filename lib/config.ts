@@ -9,6 +9,13 @@
 
 export const SITE_URL = 'https://expiroo.app';
 
+// Date (YYYY-MM-DD) the shared post/home page template last changed in a way
+// search engines should re-crawl (internal links, JSON-LD, titles). Feeds the
+// sitemap <lastmod> of posts and home pages. Bump it by hand in the deploy that
+// changes that template; never derive it from `new Date()` (a build date is not
+// a content change).
+export const SEO_TEMPLATE_UPDATED = '2026-10-16';
+
 // Closed-beta Google Group. UI CTAs no longer link here directly — they route
 // to the `/{locale}/blog/${BETA_POST_SLUG}` tutorial post, which walks through
 // the two-step join flow. This raw group link lives only inside that post's copy.

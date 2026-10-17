@@ -23,6 +23,7 @@ export async function generateMetadata({
     title: `${dict.contact.heading} · Expiroo`,
     description: dict.contact.lead,
     availableLocales: [...locales],
+    noindex: true,
   });
 }
 

@@ -120,6 +120,7 @@ proxy.ts              root `/` locale-detect redirect
    title: "..."
    description: "..." # also used as the meta description
    date: "YYYY-MM-DD"
+   updated: "YYYY-MM-DD" # optional; set when the content is revised (quoted)
    keyword: "..."
    image: "/images/blog/<locale>/<slug>.jpg"
    readingMinutes: 7

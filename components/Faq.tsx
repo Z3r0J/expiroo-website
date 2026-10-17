@@ -2,8 +2,10 @@ import type { Dictionary } from '@/lib/i18n';
 
 export function Faq({ dict }: { dict: Dictionary }) {
   const f = dict.faq;
+  // No bottom padding: on the home page Faq is always followed by BetaCTA (same
+  // bg-surface), whose top padding provides the gap.
   return (
-    <section className="bg-surface-container-low py-16 md:py-24">
+    <section className="bg-surface pt-16 md:pt-24">
       <div className="mx-auto max-w-[70ch] px-5 sm:px-8">
         <div data-reveal>
           <p className="text-label text-primary">{f.eyebrow}</p>
@@ -16,7 +18,7 @@ export function Faq({ dict }: { dict: Dictionary }) {
               key={item.q}
               className="faq-item group mt-3 rounded-2xl bg-surface-container-lowest"
             >
-              <summary className="text-title flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-container-low [&::-webkit-details-marker]:hidden">
+              <summary className="text-title flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&::-webkit-details-marker]:hidden">
                 {item.q}
                 <svg
                   viewBox="0 0 24 24"

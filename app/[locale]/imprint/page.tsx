@@ -23,6 +23,7 @@ export async function generateMetadata({
     title: `${doc.title} · Expiroo`,
     description: doc.intro,
     availableLocales: [...locales],
+    noindex: true,
   });
 }
 
