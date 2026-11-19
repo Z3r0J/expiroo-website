@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Marketing/SEO site for **Expiroo** (local-first Android pantry/expiry-tracker app, currently in closed beta). Next.js 16 App Router, fully static (SSG), TypeScript strict, Tailwind CSS v4. The README covers deploy pendings (`TODO(user)` markers), the release checklist, and the new-post workflow — read it before touching routes or blog content.
+Marketing/SEO site for **Expiroo** (local-first Android pantry/expiry-tracker app, publicly available on Google Play since 2026-11-18). Next.js 16 App Router, fully static (SSG), TypeScript strict, Tailwind CSS v4. The README covers deploy pendings (`TODO(user)` markers), the release checklist, and the new-post workflow — read it before touching routes or blog content.
 
 ## Commands
 
@@ -36,7 +36,8 @@ There are no tests. Verification = `tsc` + `build` + inspecting generated HTML i
 - **No Expiroo price anywhere** — not in copy, FAQ, JSON-LD (`MobileApplication` has no `offers`). Say "one-time purchase, no subscription" / "Einmaliger Kauf, kein Abo". `lib/config.ts` exports no price constant on purpose; the price will change over time.
 - **Every statistic needs a verified source** cited inline or via `PostChart`'s `source`/`sourceUrl`. Never invent figures; unverifiable claims are omitted or explicitly flagged. Competitor prices carry an "as of <month year>" note.
 - **Food-safety posts** (expired/shelf-life topics) include the `Disclaimer` MDX component.
-- **Honest beta messaging**: the app is in closed beta on Google Play; every CTA (`BetaButton`, used in Hero, Header, the BetaCTA banner, and `/en/alternatives`) routes internally to the join tutorial post (`BETA_POST_SLUG` in `lib/config.ts`, slug `join-expiroo-beta`, published in all three locales). The raw Google Group link (`BETA_URL`) appears only inside that post's content, not in any UI CTA.
+- **Public-app messaging**: the app is public on Google Play (free download; free version tracks up to 10 items at a time; Premium = one-time purchase that removes ads, unlocks unlimited items and the full statistics dashboard). Every download CTA (`PlayButton`, used in Hero, Header, the `DownloadCTA` banner and `/en/alternatives`) links straight to `PLAY_URL` in `lib/config.ts` (external, new tab). No beta / tester / opt-in wording anywhere. The install-and-setup guide keeps the legacy slug `join-expiroo-beta` (all three locales) so existing URLs and links keep working — don't rename it. Keep "Expiroo for Android" explicit: an unrelated iOS app uses the same name.
+- **`public/app-ads.txt`** (AdMob, no mediation) is served at the root; keep it out of the `proxy.ts` matcher and the sitemap.
 
 ## Design system ("Botanical Editorial" — mirrors the app)
 

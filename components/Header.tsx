@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Dictionary, Locale } from '@/lib/i18n';
-import { BetaButton } from './BetaButton';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { PlayButton } from './PlayButton';
 
 // Transparent, non-sticky header sitting over the page's opening mesh band
 // (shuri §6). No JS scroll-state, no border.
@@ -47,9 +47,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             label={dict.footer.language}
             notAvailableLabel={dict.footer.notAvailable}
           />
-          <BetaButton locale={locale} className="hidden min-h-11 px-5 text-sm md:inline-flex">
-            {dict.cta.beta}
-          </BetaButton>
+          <PlayButton className="hidden min-h-11 px-5 text-sm md:inline-flex">
+            {dict.cta.download}
+          </PlayButton>
         </div>
       </div>
     </header>

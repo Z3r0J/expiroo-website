@@ -56,7 +56,7 @@
 
 /*
  * "Expiroo Mesh" brand bands (CSS literal from design.json — do not rewrite).
- * bg-mesh: vertical hero; bg-mesh-wide: compact internal bands + BetaCTA.
+ * bg-mesh: vertical hero; bg-mesh-wide: compact internal bands + DownloadCTA.
  */
 @utility bg-mesh {
   background: radial-gradient(at 14% 30%, #2b9134 0px, transparent 52%),

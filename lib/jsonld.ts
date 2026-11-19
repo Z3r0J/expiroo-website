@@ -1,10 +1,10 @@
-import { PARENT_COMPANY, PARENT_COMPANY_URL, SITE_URL } from './config';
+import { PARENT_COMPANY, PARENT_COMPANY_URL, PLAY_URL, SITE_URL } from './config';
 import type { Dictionary, Locale } from './i18n';
 import type { PostMeta } from './posts';
 
 /**
- * JSON-LD builders. No offers/price on MobileApplication — the app is in closed
- * beta and the price is not public (pricing rule).
+ * JSON-LD builders. No offers/price on MobileApplication — the site never states
+ * a price (pricing rule); installUrl/downloadUrl point to the Google Play listing.
  */
 
 // Stable node ids so the home page's blocks reference one another.
@@ -68,7 +68,9 @@ export function mobileApplicationLd(locale: Locale, dict: Dictionary) {
     url: `${SITE_URL}/${locale}`,
     inLanguage: locale,
     image: `${SITE_URL}/images/og/${locale}.png`,
-    sameAs: ['https://www.fusioncoreapps.com/apps/expiroo'],
+    installUrl: PLAY_URL,
+    downloadUrl: PLAY_URL,
+    sameAs: ['https://www.fusioncoreapps.com/apps/expiroo', PLAY_URL],
     publisher: {
       '@type': 'Organization',
       '@id': ORGANIZATION_ID,

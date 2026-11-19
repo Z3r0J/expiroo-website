@@ -52,7 +52,7 @@ export type ChartBar = {
 export type Dictionary = {
   meta: { defaultTitle: string; defaultDescription: string };
   nav: { skipToContent: string; blog: string; contact: string };
-  cta: { beta: string; betaNote: string };
+  cta: { download: string; note: string };
   hero: {
     eyebrow: string;
     titleLead: string;
@@ -80,7 +80,7 @@ export type Dictionary = {
   };
   latestPosts: { eyebrow: string; heading: string };
   faq: { eyebrow: string; heading: string; items: FaqItem[] };
-  betaBanner: {
+  downloadBanner: {
     headingLead: string;
     headingHighlight: string;
     sub: string;
@@ -114,7 +114,7 @@ export type Dictionary = {
   };
   footer: {
     tagline: string;
-    betaNote: string;
+    availability: string;
     publisher: string;
     productHeading: string;
     blog: string;
@@ -132,23 +132,23 @@ export type Dictionary = {
 
 const en: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo: Food Expiry & Pantry Inventory App for Android',
+    defaultTitle: 'Expiroo: Food Expiry Tracker & Pantry App for Android',
     defaultDescription:
-      'Expiroo tracks food expiration dates across your fridge, freezer and pantry and reminds you before food goes bad. No account, works offline. One-time purchase.',
+      'Expiroo is a food expiry tracker app for Android: a fridge and pantry inventory that reminds you before food goes bad. Free on Google Play, no account, offline.',
   },
   nav: { skipToContent: 'Skip to content', blog: 'Blog', contact: 'Contact' },
-  cta: { beta: 'Join the beta', betaNote: 'Closed beta on Google Play — limited spots.' },
+  cta: { download: 'Get it on Google Play', note: 'Free download · Android 7.0 or later · No account' },
   hero: {
     eyebrow: 'Food expiry tracker · Android',
     titleLead: 'Never miss an ',
     titleHighlight: 'expiration date',
     lead: 'Half the food you throw away was still good yesterday. Expiroo remembers what’s in your fridge, freezer and pantry — and warns you before it goes bad.',
-    ctaPrimary: 'Join the beta',
+    ctaPrimary: 'Get it on Google Play',
     ctaSecondary: 'See features',
   },
   features: {
     eyebrow: 'Features',
-    heading: 'The features that keep food out of the bin',
+    heading: 'A fridge and pantry inventory that keeps food out of the bin',
     items: [
       {
         icon: 'reminders',
@@ -219,7 +219,7 @@ const en: Dictionary = {
     items: [
       {
         q: 'Is Expiroo free?',
-        a: 'Yes. The free version tracks up to 10 items at a time, so you can try the whole app before deciding.',
+        a: 'Yes. Expiroo is a free download on Google Play. The free version shows ads and tracks up to 10 items at a time, so you can try the whole app before deciding.',
       },
       {
         q: 'Do I need an account?',
@@ -231,11 +231,15 @@ const en: Dictionary = {
       },
       {
         q: 'What’s Expiroo Premium?',
-        a: 'A one-time purchase, not a subscription. It removes ads, unlocks unlimited items and opens the full statistics dashboard. Pay once, keep it forever.',
+        a: 'An optional upgrade you buy inside the app through Google Play. It’s a one-time purchase, not a subscription: it removes ads, unlocks unlimited items and opens the full statistics dashboard. Pay once, keep it forever.',
       },
       {
-        q: 'When will it be on the Play Store?',
-        a: 'Expiroo is in closed beta on Google Play right now. A public listing comes later — join the beta to get in early.',
+        q: 'Is Expiroo only for Android?',
+        a: 'Yes. Expiroo is an Android app on Google Play and runs on Android 7.0 or later. An iPhone app with the same name exists, but it comes from a different developer and has nothing to do with this one.',
+      },
+      {
+        q: 'What is a food expiry tracker app?',
+        a: 'An app that keeps an inventory of your fridge, freezer and pantry with the date on each item, and reminds you before something expires. Expiroo does that on Android, with barcode scanning to add items fast. Comparing options? See our guide to the best food expiration tracker apps for Android on the blog.',
       },
       {
         q: 'Can I scan barcodes?',
@@ -243,11 +247,11 @@ const en: Dictionary = {
       },
     ],
   },
-  betaBanner: {
-    headingLead: 'Join the closed beta and ',
+  downloadBanner: {
+    headingLead: 'Download Expiroo and ',
     headingHighlight: 'waste less',
-    sub: '12 beta spots · Google Play',
-    cta: 'Join the beta',
+    sub: 'Free on Google Play · Premium is a one-time purchase, no subscription',
+    cta: 'Get it on Google Play',
   },
   blog: {
     eyebrow: 'Blog',
@@ -263,7 +267,7 @@ const en: Dictionary = {
   contact: {
     eyebrow: 'Contact',
     heading: 'Get in touch',
-    lead: 'Questions, bug reports, beta access — send a message and we’ll get back to you.',
+    lead: 'Questions, bug reports, feature ideas — send a message and we’ll get back to you.',
     name: 'Name',
     email: 'Email',
     message: 'Message',
@@ -278,7 +282,7 @@ const en: Dictionary = {
   },
   footer: {
     tagline: 'The food expiration tracker that keeps everything on your phone.',
-    betaNote: 'Currently in closed beta on Google Play.',
+    availability: 'Available on Google Play for Android.',
     publisher: 'An app by',
     productHeading: 'Product',
     blog: 'Blog',
@@ -298,16 +302,16 @@ const es: Dictionary = {
   meta: {
     defaultTitle: 'Expiroo: app para controlar fechas de vencimiento',
     defaultDescription:
-      'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad que te avisa antes de que se eche a perder.',
+      'Expiroo controla las fechas de vencimiento de tu refrigerador, congelador y alacena — un control de caducidad gratis en Google Play que te avisa antes de que algo se eche a perder.',
   },
   nav: { skipToContent: 'Saltar al contenido', blog: 'Blog', contact: 'Contacto' },
-  cta: { beta: 'Únete a la beta', betaNote: 'Beta cerrada en Google Play — plazas limitadas.' },
+  cta: { download: 'Disponible en Google Play', note: 'Descarga gratis · Android 7.0 o superior · Sin cuenta' },
   hero: {
     eyebrow: 'Control de vencimientos · Android',
     titleLead: 'Controla las ',
     titleHighlight: 'fechas de vencimiento',
     lead: 'La mitad de la comida que botas todavía estaba buena ayer. Expiroo recuerda lo que tienes en el refrigerador, el congelador y la alacena, y te avisa antes de que se eche a perder.',
-    ctaPrimary: 'Únete a la beta',
+    ctaPrimary: 'Disponible en Google Play',
     ctaSecondary: 'Ver funciones',
   },
   features: {
@@ -383,7 +387,7 @@ const es: Dictionary = {
     items: [
       {
         q: '¿Expiroo es gratis?',
-        a: 'Sí. La versión gratuita controla hasta 10 productos a la vez, así que puedes probar toda la app antes de decidir.',
+        a: 'Sí. Expiroo se descarga gratis desde Google Play. La versión gratuita muestra anuncios y controla hasta 10 productos a la vez, así que puedes probar toda la app antes de decidir.',
       },
       {
         q: '¿Necesito una cuenta?',
@@ -395,11 +399,11 @@ const es: Dictionary = {
       },
       {
         q: '¿Qué es Expiroo Premium?',
-        a: 'Un pago único, no una suscripción. Quita los anuncios, desbloquea productos ilimitados y abre el panel completo de estadísticas. Pagas una vez y es tuyo.',
+        a: 'Una mejora opcional que compras dentro de la app a través de Google Play. Es un pago único, no una suscripción: quita los anuncios, desbloquea productos ilimitados y abre el panel completo de estadísticas. Pagas una vez y es tuyo.',
       },
       {
-        q: '¿Cuándo estará en la Play Store?',
-        a: 'Expiroo está en beta cerrada en Google Play ahora mismo. La ficha pública llega después; únete a la beta para entrar antes.',
+        q: '¿Expiroo es solo para Android?',
+        a: 'Sí. Expiroo es una app para Android en Google Play y funciona con Android 7.0 o superior. Existe una app para iPhone con el mismo nombre, pero es de otro desarrollador y no tiene nada que ver con esta.',
       },
       {
         q: '¿Puedo escanear códigos de barras?',
@@ -407,11 +411,11 @@ const es: Dictionary = {
       },
     ],
   },
-  betaBanner: {
-    headingLead: 'Únete a la beta cerrada y ',
+  downloadBanner: {
+    headingLead: 'Descarga Expiroo y ',
     headingHighlight: 'desperdicia menos',
-    sub: '12 plazas de beta · Google Play',
-    cta: 'Únete a la beta',
+    sub: 'Gratis en Google Play · Premium es un pago único, sin suscripción',
+    cta: 'Disponible en Google Play',
   },
   blog: {
     eyebrow: 'Blog',
@@ -427,7 +431,7 @@ const es: Dictionary = {
   contact: {
     eyebrow: 'Contacto',
     heading: 'Escríbenos',
-    lead: 'Dudas, reportes de errores, acceso a la beta — envía un mensaje y te responderemos.',
+    lead: 'Dudas, reportes de errores, ideas para la app — envía un mensaje y te responderemos.',
     name: 'Nombre',
     email: 'Correo',
     message: 'Mensaje',
@@ -442,7 +446,7 @@ const es: Dictionary = {
   },
   footer: {
     tagline: 'El control de fechas de vencimiento que guarda todo en tu teléfono.',
-    betaNote: 'Actualmente en beta cerrada en Google Play.',
+    availability: 'Disponible en Google Play para Android.',
     publisher: 'Una app de',
     productHeading: 'Producto',
     blog: 'Blog',
@@ -459,18 +463,18 @@ const es: Dictionary = {
 
 const de: Dictionary = {
   meta: {
-    defaultTitle: 'Expiroo: Kühlschrank-App mit MHD-Erinnerung für Android',
+    defaultTitle: 'Expiroo: Haltbarkeitsdatum-App mit Erinnerung für Android',
     defaultDescription:
-      'Die Vorrats- & Kühlschrank-App, die dein Haltbarkeitsdatum (MHD) im Blick behält und dich erinnert, bevor etwas abläuft. Ohne Konto, offline. Einmaliger Kauf.',
+      'Die Kühlschrank- und Vorrats-App, die jedes Haltbarkeitsdatum (MHD) im Blick behält und dich vor Ablauf erinnert. Kostenlos bei Google Play, ohne Konto.',
   },
   nav: { skipToContent: 'Zum Inhalt springen', blog: 'Blog', contact: 'Kontakt' },
-  cta: { beta: 'Zur Beta anmelden', betaNote: 'Geschlossene Beta bei Google Play — begrenzte Plätze.' },
+  cta: { download: 'Jetzt bei Google Play', note: 'Kostenloser Download · ab Android 7.0 · ohne Konto' },
   hero: {
     eyebrow: 'Haltbarkeits-Tracker · Android',
     titleLead: 'Haltbarkeitsdatum ',
     titleHighlight: 'im Blick',
     lead: 'Die Hälfte der Lebensmittel, die du wegwirfst, war gestern noch gut. Expiroo behält im Blick, was in Kühlschrank, Gefrierschrank und Vorratskammer liegt — und meldet sich, bevor etwas schlecht wird.',
-    ctaPrimary: 'Zur Beta anmelden',
+    ctaPrimary: 'Jetzt bei Google Play',
     ctaSecondary: 'Funktionen ansehen',
   },
   features: {
@@ -552,7 +556,7 @@ const de: Dictionary = {
     items: [
       {
         q: 'Ist Expiroo kostenlos?',
-        a: 'Ja. Die kostenlose Version verwaltet bis zu 10 Artikel gleichzeitig, genug, um die ganze App zu testen.',
+        a: 'Ja. Expiroo lädst du kostenlos bei Google Play herunter. Die kostenlose Version zeigt Werbung und verwaltet bis zu 10 Artikel gleichzeitig, genug, um die ganze App zu testen.',
       },
       {
         q: 'Brauche ich ein Konto?',
@@ -564,11 +568,11 @@ const de: Dictionary = {
       },
       {
         q: 'Was ist Expiroo Premium?',
-        a: 'Ein einmaliger Kauf, kein Abo. Es entfernt die Werbung, hebt das Limit auf und schaltet die vollständige Statistik frei. Einmal zahlen, dauerhaft behalten.',
+        a: 'Ein optionales Upgrade, das du in der App über Google Play kaufst. Es ist ein einmaliger Kauf, kein Abo: Es entfernt die Werbung, hebt das Limit auf und schaltet die vollständige Statistik frei. Einmal zahlen, dauerhaft behalten.',
       },
       {
-        q: 'Wann kommt es in den Play Store?',
-        a: 'Expiroo ist gerade in der geschlossenen Beta bei Google Play. Die öffentliche Version folgt später — melde dich für die Beta an, um früh dabei zu sein.',
+        q: 'Gibt es Expiroo nur für Android?',
+        a: 'Ja. Expiroo ist eine Android-App bei Google Play und läuft ab Android 7.0. Es gibt eine iPhone-App mit demselben Namen, aber sie stammt von einem anderen Entwickler und hat mit dieser App nichts zu tun.',
       },
       {
         q: 'Kann ich Barcodes scannen?',
@@ -576,11 +580,11 @@ const de: Dictionary = {
       },
     ],
   },
-  betaBanner: {
-    headingLead: 'Mach bei der geschlossenen Beta mit und ',
+  downloadBanner: {
+    headingLead: 'Hol dir Expiroo und ',
     headingHighlight: 'wirf weniger weg',
-    sub: '12 Beta-Plätze · Google Play',
-    cta: 'Zur Beta anmelden',
+    sub: 'Kostenlos bei Google Play · Premium ist ein einmaliger Kauf, kein Abo',
+    cta: 'Jetzt bei Google Play',
   },
   blog: {
     eyebrow: 'Blog',
@@ -596,7 +600,7 @@ const de: Dictionary = {
   contact: {
     eyebrow: 'Kontakt',
     heading: 'Schreib uns',
-    lead: 'Fragen, Fehlerberichte, Beta-Zugang — schick eine Nachricht und wir melden uns.',
+    lead: 'Fragen, Fehlerberichte, Ideen für die App — schick eine Nachricht und wir melden uns.',
     name: 'Name',
     email: 'E-Mail',
     message: 'Nachricht',
@@ -611,7 +615,7 @@ const de: Dictionary = {
   },
   footer: {
     tagline: 'Der Haltbarkeits-Tracker, der alles auf deinem Gerät behält.',
-    betaNote: 'Derzeit in geschlossener Beta bei Google Play.',
+    availability: 'Erhältlich bei Google Play für Android.',
     publisher: 'Eine App von',
     productHeading: 'Produkt',
     blog: 'Blog',

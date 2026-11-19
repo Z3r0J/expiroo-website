@@ -1,5 +1,5 @@
 import type { Dictionary, Locale } from '@/lib/i18n';
-import { BetaButton } from './BetaButton';
+import { PlayButton } from './PlayButton';
 import { DeviceFrame } from './DeviceFrame';
 
 export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -14,9 +14,9 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </h1>
           <p className="text-lead mt-5 max-w-lg text-white/80">{dict.hero.lead}</p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <BetaButton locale={locale} className="inline-flex min-h-13 px-8 text-base">
+            <PlayButton className="inline-flex min-h-13 px-8 text-base">
               {dict.hero.ctaPrimary}
-            </BetaButton>
+            </PlayButton>
             <a
               href="#features"
               className="inline-flex min-h-13 items-center rounded-full px-6 font-bold text-primary-container transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-night"
@@ -24,7 +24,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {dict.hero.ctaSecondary}
             </a>
           </div>
-          <p className="mt-4 text-sm text-white/60">{dict.cta.betaNote}</p>
+          <p className="mt-4 text-sm text-white/60">{dict.cta.note}</p>
         </div>
 
         <div className="-mb-16 flex justify-center md:-mb-24 lg:justify-end">

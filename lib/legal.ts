@@ -283,15 +283,15 @@ export const privacyDoc: Record<Locale, LegalDoc> = {
   },
 };
 
-// Terms for the Expiroo Android app (closed beta on Google Play). No price is
+// Terms for the Expiroo Android app (published on Google Play). No price is
 // ever stated (repo pricing rule) and no governing law is invented — the user
 // provides jurisdiction later. The food-safety wording mirrors the blog Disclaimer.
 export const termsDoc: Record<Locale, LegalDoc> = {
   en: {
     title: 'Terms of Service',
-    updated: 'Last updated: 21 July 2026',
+    updated: 'Last updated: 19 November 2026',
     metaDescription:
-      'Terms of Service for the Expiroo app: closed-beta status, a one-time Premium purchase, a food-safety disclaimer and a fair indie limitation of liability.',
+      'Terms of Service for the Expiroo app: availability on Google Play, a one-time Premium purchase, a food-safety disclaimer and a fair indie limitation of liability.',
     intro:
       'These terms govern your use of the Expiroo mobile app. By using the app, you accept them.',
     sections: [
@@ -302,9 +302,9 @@ export const termsDoc: Record<Locale, LegalDoc> = {
         ],
       },
       {
-        heading: 'Closed beta',
+        heading: 'Availability and updates',
         body: [
-          'Expiroo is currently in closed beta on Google Play. While we develop the app, features may change, break or be removed, and access is granted through the Google Play beta programme.',
+          'Expiroo is distributed through Google Play. We keep developing the app, so features may change or be removed over time; updates are delivered through Google Play.',
         ],
       },
       {
@@ -347,9 +347,9 @@ export const termsDoc: Record<Locale, LegalDoc> = {
   },
   es: {
     title: 'Términos de servicio',
-    updated: 'Última actualización: 21 de julio de 2026',
+    updated: 'Última actualización: 19 de noviembre de 2026',
     metaDescription:
-      'Términos de servicio de la app Expiroo: estado de beta cerrada, compra única Premium, aviso de seguridad alimentaria y una limitación de responsabilidad justa.',
+      'Términos de servicio de la app Expiroo: disponibilidad en Google Play, compra única Premium, aviso de seguridad alimentaria y una limitación de responsabilidad justa.',
     intro:
       'Estos términos rigen el uso de la app móvil Expiroo. Al usarla, los aceptas.',
     sections: [
@@ -360,9 +360,9 @@ export const termsDoc: Record<Locale, LegalDoc> = {
         ],
       },
       {
-        heading: 'Beta cerrada',
+        heading: 'Disponibilidad y actualizaciones',
         body: [
-          'Expiroo está actualmente en beta cerrada en Google Play. Mientras desarrollamos la app, las funciones pueden cambiar, fallar o retirarse, y el acceso se concede a través del programa beta de Google Play.',
+          'Expiroo se distribuye a través de Google Play. Seguimos desarrollando la app, así que las funciones pueden cambiar o retirarse con el tiempo; las actualizaciones llegan a través de Google Play.',
         ],
       },
       {
@@ -405,9 +405,9 @@ export const termsDoc: Record<Locale, LegalDoc> = {
   },
   de: {
     title: 'Nutzungsbedingungen',
-    updated: 'Zuletzt aktualisiert: 21. Juli 2026',
+    updated: 'Zuletzt aktualisiert: 19. November 2026',
     metaDescription:
-      'Nutzungsbedingungen der Expiroo-App: geschlossene Beta, einmaliger Premium-Kauf, ein Hinweis zur Lebensmittelsicherheit und eine faire Haftungsbeschränkung.',
+      'Nutzungsbedingungen der Expiroo-App: Verfügbarkeit bei Google Play, einmaliger Premium-Kauf, ein Hinweis zur Lebensmittelsicherheit und eine faire Haftungsbeschränkung.',
     intro:
       'Diese Nutzungsbedingungen regeln die Nutzung der Expiroo-App. Mit der Nutzung der App erklärst du dich mit ihnen einverstanden.',
     sections: [
@@ -418,9 +418,9 @@ export const termsDoc: Record<Locale, LegalDoc> = {
         ],
       },
       {
-        heading: 'Geschlossene Beta',
+        heading: 'Verfügbarkeit und Updates',
         body: [
-          'Expiroo befindet sich derzeit in der geschlossenen Beta bei Google Play. Während wir die App entwickeln, können sich Funktionen ändern, ausfallen oder entfernt werden, und der Zugang wird über das Beta-Programm von Google Play gewährt.',
+          'Expiroo wird über Google Play vertrieben. Wir entwickeln die App weiter, daher können sich Funktionen mit der Zeit ändern oder entfernt werden; Updates erhältst du über Google Play.',
         ],
       },
       {

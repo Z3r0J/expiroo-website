@@ -2,7 +2,7 @@ import type { Dictionary } from '@/lib/i18n';
 
 export function Faq({ dict }: { dict: Dictionary }) {
   const f = dict.faq;
-  // No bottom padding: on the home page Faq is always followed by BetaCTA (same
+  // No bottom padding: on the home page Faq is always followed by DownloadCTA (same
   // bg-surface), whose top padding provides the gap.
   return (
     <section className="bg-surface pt-16 md:pt-24">

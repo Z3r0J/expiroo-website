@@ -52,13 +52,10 @@ pre-commit scan).
 These are placeholders or manual steps left for the site owner — search the
 codebase for `TODO(user)` to find them again:
 
-- [x] Replace `BETA_URL` in `lib/config.ts` with the real closed-beta Google
-      Group invite link. UI CTAs (`BetaButton`) no longer link to it directly —
-      they route to the `/{locale}/blog/${BETA_POST_SLUG}` join tutorial post
-      (`join-expiroo-beta`, all three locales); `BETA_URL` now appears only
-      inside that post's content.
-- [ ] Replace `PLAY_URL` in `lib/config.ts` (`'#'` placeholder) with the Play
-      Store listing URL once the app is public.
+- [x] Set `PLAY_URL` in `lib/config.ts` to the public Google Play listing
+      (live since 2026-11-18). Every download CTA (`PlayButton`) links there
+      directly; `/{locale}/blog/join-expiroo-beta` is now the install-and-setup
+      guide (legacy slug kept on purpose).
 - [ ] Create a Web3Forms access key at [web3forms.com](https://web3forms.com)
       (using the `support@expiroo.app` inbox) and set it as
       `NEXT_PUBLIC_WEB3FORMS_KEY` in both Vercel's project env vars and

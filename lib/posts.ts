@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { BETA_POST_SLUG } from './config';
 import { locales, type Locale } from './i18n';
 
 export type PostFrontmatter = {
@@ -93,8 +92,7 @@ export function getLatestPosts(
 
 /**
  * Further reading for a post, same locale only: posts of the same category
- * first, then the most recently revised. Never the post itself or the beta
- * join tutorial (every CTA already links there).
+ * first, then the most recently revised. Never the post itself.
  */
 export function getRelatedPosts(
   locale: Locale,
@@ -105,7 +103,7 @@ export function getRelatedPosts(
   const category = posts.find((p) => p.slug === slug)?.category ?? '';
   const sameCategory = (p: PostMeta) => category !== '' && p.category === category;
   return posts
-    .filter((p) => p.slug !== slug && p.slug !== BETA_POST_SLUG)
+    .filter((p) => p.slug !== slug)
     .sort((a, b) => Number(sameCategory(b)) - Number(sameCategory(a)) || byRecency(a, b))
     .slice(0, limit);
 }

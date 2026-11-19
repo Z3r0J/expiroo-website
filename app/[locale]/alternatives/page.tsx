@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { BetaButton } from '@/components/BetaButton';
+import { PlayButton } from '@/components/PlayButton';
 import { getDictionary, isLocale } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/seo';
 
@@ -23,7 +24,7 @@ export async function generateMetadata({
     path: '/alternatives',
     title: 'NoWaste & Best Before Alternative — Expiroo (Android, no account)',
     description:
-      'Looking for a NoWaste or Best Before alternative? Expiroo is an Android-first expiry tracker with no account, offline by design, and a one-time purchase.',
+      'Looking for a NoWaste or Best Before alternative? Expiroo is an Android-first expiry tracker with no account, offline by design, and free with a one-time Premium upgrade.',
     availableLocales: ['en'],
   });
 }
@@ -51,7 +52,7 @@ const ROWS: { criterion: string; expiroo: Cell; noWaste: Cell; bestBefore: Cell 
     criterion: 'Platforms',
     expiroo: { text: 'Android', tone: 'good' },
     noWaste: { text: 'iOS & Android', tone: 'neutral' },
-    bestBefore: { text: 'iOS & Android', tone: 'neutral' },
+    bestBefore: { text: 'Android', tone: 'neutral' },
   },
   {
     criterion: 'Account',
@@ -67,9 +68,9 @@ const ROWS: { criterion: string; expiroo: Cell; noWaste: Cell; bestBefore: Cell 
   },
   {
     criterion: 'Pricing',
-    expiroo: { text: 'One-time purchase', tone: 'good' },
+    expiroo: { text: 'Free + one-time Premium', tone: 'good' },
     noWaste: { text: 'Freemium + in-app purchases', tone: 'neutral' },
-    bestBefore: { text: 'One-time (iOS) / free (Android)', tone: 'neutral' },
+    bestBefore: { text: 'Free with ads + in-app purchase', tone: 'neutral' },
   },
   {
     criterion: 'Barcode scanning',
@@ -111,8 +112,8 @@ export default async function AlternativesPage({
               Expiroo is a local-first food expiration tracker built Android-first.
               Its defensible difference is simple: it never asks for an account,
               works offline by design because your inventory lives in a local
-              database on your phone, and it is a one-time purchase rather than a
-              subscription. NoWaste and Best Before take different trade-offs, and
+              database on your phone, and it is free to start, with Premium as a
+              one-time purchase rather than a subscription. NoWaste and Best Before take different trade-offs, and
               both are good apps — the table below sticks to what can be verified.
             </p>
           </div>
@@ -152,17 +153,22 @@ export default async function AlternativesPage({
             but its barcode lookup needs a connection, so it is “Partial”.
             “Check listing” means a detail we cannot currently verify and do not
             want to assert — always confirm current features and pricing on each
-            app’s store listing.
+            app’s store listing. The iPhone app called “Best Before – Food
+            Tracker” comes from a different developer. For more apps (Your Food,
+            FridgeWise, BEEP, Pantry Check and open-source options), see our{' '}
+            <Link href="/en/blog/best-pantry-expiry-tracker-apps" className="underline">
+              comparison of the best food expiration tracker apps for Android
+            </Link>
+            .
           </p>
 
           <div className="mt-10">
-            <BetaButton
-              locale="en"
+            <PlayButton
               className="inline-flex min-h-13 px-8 text-base"
               ringOffset="surface"
             >
-              {dict.cta.beta}
-            </BetaButton>
+              {dict.cta.download}
+            </PlayButton>
           </div>
         </div>
       </section>

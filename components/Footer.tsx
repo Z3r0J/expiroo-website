@@ -28,7 +28,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <span className="font-display text-lg font-bold text-white">Expiroo</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-white/60">{f.tagline}</p>
-            <p className="mt-4 text-xs text-white/50">{f.betaNote}</p>
+            <p className="mt-4 text-xs text-white/50">{f.availability}</p>
             <a
               href={PARENT_COMPANY_URL}
               rel="noopener"

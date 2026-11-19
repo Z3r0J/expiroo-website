@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { BetaCTA } from '@/components/BetaCTA';
+import { DownloadCTA } from '@/components/DownloadCTA';
 import { Faq } from '@/components/Faq';
 import { FeatureGrid } from '@/components/FeatureGrid';
 import { Hero } from '@/components/Hero';
@@ -8,7 +8,6 @@ import { JsonLd } from '@/components/JsonLd';
 import { MorePosts } from '@/components/MorePosts';
 import { ScreenshotCarousel } from '@/components/ScreenshotCarousel';
 import { WasteChart } from '@/components/WasteChart';
-import { BETA_POST_SLUG } from '@/lib/config';
 import { getDictionary, isLocale, locales } from '@/lib/i18n';
 import { faqPageLd, mobileApplicationLd, organizationLd, websiteLd } from '@/lib/jsonld';
 import { getLatestPosts } from '@/lib/posts';
@@ -58,12 +57,12 @@ export default async function HomePage({
       <MorePosts
         locale={locale}
         dict={dict}
-        posts={getLatestPosts(locale, 3, [BETA_POST_SLUG])}
+        posts={getLatestPosts(locale, 3, [])}
         eyebrow={dict.latestPosts.eyebrow}
         heading={dict.latestPosts.heading}
       />
       <Faq dict={dict} />
-      <BetaCTA locale={locale} dict={dict} />
+      <DownloadCTA dict={dict} />
     </>
   );
 }

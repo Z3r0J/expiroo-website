@@ -17,6 +17,7 @@ import type { Locale } from './i18n';
  */
 export const POST_LOCALES: Record<string, Locale[]> = {
   'join-expiroo-beta': ['de', 'en', 'es'],
+  'mejores-apps-control-fecha-caducidad-android': ['es'],
 };
 
 /** Routes that exist only in some locales; other locales fall back to home. */

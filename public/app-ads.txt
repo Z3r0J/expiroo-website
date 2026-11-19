@@ -1,0 +1,5 @@
+OWNERDOMAIN=fusioncoreapps.com
+
+# app-ads.txt — expiroo.app (Expiroo for Android, com.fusioncoreapps.expiroo)
+# AdMob only; no mediation partners. Update if mediation is added to the app.
+google.com, pub-6246712206395531, DIRECT, f08c47fec0942fa0
