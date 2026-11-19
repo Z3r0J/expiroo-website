@@ -124,7 +124,7 @@ export function getLocalesForSlug(slug: string): Locale[] {
 
 export function formatDate(date: string, locale: Locale): string {
   if (!date) return '';
-  return new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' }).format(
     new Date(date),
   );
 }

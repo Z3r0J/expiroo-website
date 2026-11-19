@@ -11,6 +11,7 @@ npm run dev            # dev server
 npm run build          # production build — must generate all routes as SSG
 npx tsc --noEmit       # typecheck (no test runner exists; this + build are the verification)
 npx eslint .           # lint
+node scripts/indexnow.mjs [/es/blog/<slug> ...]  # after a prod deploy: ping IndexNow (key file public/e394db65cd3d3401dd6b80f28875c8be.txt)
 
 # Blog hero/OG images — LOCAL ONLY, output is committed; never runs on Vercel
 python scripts/og_hero.py --batch content/de/blog --outdir public/images/blog/de --fontdir scripts/fonts --app Expiroo

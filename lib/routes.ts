@@ -18,6 +18,12 @@ import type { Locale } from './i18n';
 export const POST_LOCALES: Record<string, Locale[]> = {
   'join-expiroo-beta': ['de', 'en', 'es'],
   'mejores-apps-control-fecha-caducidad-android': ['es'],
+  'producto-vencido-se-puede-consumir': ['es'],
+  'muesli-nach-mhd': ['de'],
+  'eier-mhd-abgelaufen': ['de'],
+  'leche-vencida-se-puede-tomar': ['es'],
+  'how-long-are-eggs-good-after-expiration-date': ['en'],
+  'how-long-is-yogurt-good-after-expiration-date': ['en'],
 };
 
 /** Routes that exist only in some locales; other locales fall back to home. */

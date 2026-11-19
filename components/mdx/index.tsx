@@ -27,7 +27,11 @@ function Disclaimer({ children }: { children: React.ReactNode }) {
         <circle cx="12" cy="12" r="9" />
         <path d="M12 11v5M12 7.5h.01" />
       </svg>
-      <p className="text-sm leading-relaxed">{children}</p>
+      {/* div, not p: multi-line MDX children arrive wrapped in <p> (p-in-p = hydration #418).
+          The [&_p] utilities beat .prose-botanical p so the text keeps the note styling. */}
+      <div className="text-sm leading-relaxed [&_p]:my-0 [&_p]:text-sm [&_p]:leading-relaxed">
+        {children}
+      </div>
     </div>
   );
 }

@@ -92,6 +92,9 @@ merging anything that touches routes or blog posts:
 - **App Store assets** → never use Play's composited/marketing screenshot
   PNGs. Use raw device captures only, wrapped in `DeviceFrame`
   (`components/DeviceFrame.tsx`).
+- **After a production deploy** → `node scripts/indexnow.mjs` (whole sitemap)
+  or `node scripts/indexnow.mjs /es/blog/<slug>` to ping Bing/IndexNow; the key
+  file is `public/e394db65cd3d3401dd6b80f28875c8be.txt` — don't delete it.
 
 ## Project structure
 
